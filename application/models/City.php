@@ -20,7 +20,8 @@ class Application_Model_City extends Zend_Db_Table_Abstract
 
     function listcities()
     {
-        return $this->fetchAll()->toArray();
+        return $this->fetchAll(null,"rate DESC",6)->toArray();
+        
 
     }
     function list_All_Cities()
