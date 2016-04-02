@@ -56,11 +56,16 @@ class AdminController extends Zend_Controller_Action
         {
             if($addcountry_form->isValid($request->getPost()))
             {
-//                $upload = new Zend_File_Transfer_Adapter_Http();
-//                $upload->addFilter('Rename','/images/users');
-//                $upload->receive();
+                $upload = new Zend_File_Transfer_Adapter_Http();
+//                $fname = $_FILES['image_path']['name'];
+//                $fsize = $_FILES['browse']['size'];
+//                $ferror = $_FILES['browse']['error'];
 
-                $country_obj->insertNewCountry($_POST);
+                //$image_path->addFilter('Rename','/var/www/html/zend_project/public/images/users/');
+                $upload->addFilter('Rename',"/var/www/html/zend_project/public/images/countries/".$_POST['name'].".jpeg");
+                $upload->receive();
+                $path="/images/countries/".$_POST['name'].".jpeg";
+                $country_obj->insertNewCountry($_POST,$path);
                 $this->redirect('/admin/allcountries');
             }
         }

@@ -34,9 +34,7 @@ class Application_Form_Addcountry extends Zend_Form
         //$image_path->setLabel('Image Path');
         $image_path = new Zend_Form_Element_File('image_path');
         $image_path->setLabel('Upload an image:');
-        //$image_path->setMaxFileSize(52428800);
         $image_path->addValidator('Count', false, 1);
-        //$image_path->addValidator('Size', false, 52428800);
         $image_path->addValidator('Extension',false, 'jpg,jpeg,png,gif');
 
 
@@ -58,7 +56,7 @@ class Application_Form_Addcountry extends Zend_Form
             $id,
             $name,
             $rate,
-            //$image_path,
+            $image_path,
             $sumbit,
             $reset
         ));
