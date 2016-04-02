@@ -15,7 +15,7 @@ class Application_Model_Country extends Zend_Db_Table_Abstract
 
     function list_All_Countries()
     {
-        return $this->fetchAll()->toArray();
+        return $this->fetchAll(null,"rate DESC",6)->toArray();
     }
     function insertNewCountry($countrydata)
     {
