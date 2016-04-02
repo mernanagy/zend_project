@@ -11,5 +11,9 @@ class Application_Model_Hotels extends Zend_Db_Table_Abstract
         'onDelete'=>'cascade'
 
     ));
+    function list_All_Hotels()
+    {
+        return $this->fetchAll()->toArray();
+    }
 }
 

@@ -1,0 +1,25 @@
+<br /><br /><br />
+<div id="view-content">
+
+
+	<h3 align="center" > Locations </h3>
+	<table class='table'>
+		<thead>
+		<tr>
+			<th>ID</th><th>Location Name</th><th>Edit</th><th>Delete</th>
+		</tr>
+		</thead>
+		<?php
+		foreach($this->all_locations as $key => $value)
+		{
+			echo "<tr>".
+				"<td>" . $value['id'] . "</td>" .
+				"<td>" . $value['name'] . "</td>" .
+				"<td><a href='editlocation/cid/".$value['id']."'>Edit</a></td>".
+				"<td><a href='deletelocation/cid/".$value['id']."'>Delete</a></td>".
+				"</tr>";
+		}
+		?>
+
+	</table>
+</div>
