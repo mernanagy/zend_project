@@ -11,12 +11,12 @@ class Application_Model_Country extends Zend_Db_Table_Abstract
     {
         return $this->fetchAll()->toArray();
     }
-    function insertNewCountry($countrydata,$path)
+    function insertNewCountry($countrydata)
     {
         $row=$this->createRow();
         $row->name=$countrydata['name'];
         $row->rate=$countrydata['rate'];
-        $row->image_path=$path;
+        $row->image_path=$countrydata['image_path'];
         $row->save();
     }
 

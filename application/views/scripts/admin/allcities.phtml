@@ -1,6 +1,6 @@
 <br /><br /><br />
 <div id="view-content">
-	<h3 align="center" > Cities </h3>
+	<h3 align="center" > Cities <a href='addcity'>Add City</a></h3>
 	<table class='table'>
 		<thead>
 		<tr>
@@ -13,8 +13,8 @@
 			echo "<tr>".
 				"<td>" . $value['id'] . "</td>" .
 				"<td>" . $value['name'] . "</td>" .
-				"<td><a href='editcity/cid/".$value['id']."'>Edit</a></td>".
-				"<td><a href='deletecity/cid/".$value['id']."'>Delete</a></td>".
+				"<td><a class='btn btn-success' href='editcity/cid/".$value['id']."'>Edit</a></td>".
+				"<td><a class='btn btn-danger' href='deletecity/cid/".$value['id']."'>Delete</a></td>".
 				"</tr>";
 		}
 		?>

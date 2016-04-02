@@ -19,10 +19,12 @@
           <actionMethod actionName="alllocations"/>
           <actionMethod actionName="allhotels"/>
           <actionMethod actionName="addcountry"/>
+          <actionMethod actionName="addcity"/>
         </controllerFile>
       </controllersDirectory>
       <formsDirectory>
         <formFile formName="Addcountry"/>
+        <formFile formName="Addcity"/>
       </formsDirectory>
       <layoutsDirectory>
         <layoutScriptsDirectory>
@@ -70,6 +72,9 @@
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Admin">
             <viewScriptFile forActionName="addcountry"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Admin">
+            <viewScriptFile forActionName="addcity"/>
           </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewHelpersDirectory/>
