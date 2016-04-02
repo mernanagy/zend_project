@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Mar 31, 2016 at 06:10 PM
+-- Generation Time: Apr 02, 2016 at 08:49 PM
 -- Server version: 5.5.47-0ubuntu0.14.04.1
 -- PHP Version: 5.5.9-1ubuntu4.14
 
@@ -29,8 +29,8 @@ SET time_zone = "+00:00";
 CREATE TABLE IF NOT EXISTS `car_rental` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `pick_up_location` varchar(100) NOT NULL,
-  `time_from` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `time_to` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `time_from` varchar(30) NOT NULL,
+  `time_to` varchar(30) DEFAULT NULL,
   `user_id` int(11) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
@@ -51,7 +51,19 @@ CREATE TABLE IF NOT EXISTS `city` (
   `longitude` int(11) NOT NULL,
   `country_id` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
+
+--
+-- Dumping data for table `city`
+--
+
+INSERT INTO `city` (`id`, `name`, `rate`, `imag_path`, `description`, `latitude`, `longitude`, `country_id`) VALUES
+(2, 'alex', 3, '/images/cites/3alm_zballa.jpg', '', 0, 0, 0),
+(3, 'cario', 3, '/images/cites/1394145_10202594432887918_1290572530_n.jpg', '', 0, 0, 0),
+(4, 'matroh', 3, '/images/cites/10362936_653248861444837_3117754319988566084_n.jpg', '', 0, 0, 0),
+(5, 'rashed', 3, '/images/cites/10402779_905879442757477_1952813609272726984_n.jpg', '', 0, 0, 0),
+(6, 'tanta', 3, '/images/cites/10513295_674002879387611_6924943875922809767_n.jpg', '', 0, 0, 0),
+(7, 'miami', 4, '/images/cites/1394145_10202594432887918_1290572530_n.jpg', '', 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -79,7 +91,19 @@ CREATE TABLE IF NOT EXISTS `country` (
   `rate` int(11) NOT NULL,
   `image_path` varchar(100) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
+
+--
+-- Dumping data for table `country`
+--
+
+INSERT INTO `country` (`id`, `name`, `rate`, `image_path`) VALUES
+(1, 'Egypt', 3, '/images/countries/30-Death-Defying-Photos-That-Will-Make-Your-Heart-Skip-A-Beat-photofal-22.jpg'),
+(2, 'Qater', 3, '/images/countries/30-Death-Defying-Photos-That-Will-Make-Your-Heart-Skip-A-Beat-photofal-22.jpg'),
+(3, 'Koria', 3, '/images/countries/16091_374168822734375_3819432414317513178_n.jpg'),
+(4, 'lebia', 3, '/images/countries/181011_596602857036177_393388616_n.jpg'),
+(5, 'london', 3, '/images/countries/181011_596602857036177_393388616_n.jpg'),
+(6, 'jaban', 3, '/images/countries/12687919_10154494417029186_4307678751489344476_n.jpg');
 
 -- --------------------------------------------------------
 
@@ -103,8 +127,8 @@ CREATE TABLE IF NOT EXISTS `hotels` (
 CREATE TABLE IF NOT EXISTS `hotel_reservation` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(100) NOT NULL,
-  `time_from` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `time_to` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `time_from` varchar(30) DEFAULT NULL,
+  `time_to` varchar(30) NOT NULL DEFAULT '0000-00-00 00:00:00',
   `number_of_adults` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
   PRIMARY KEY (`id`)
