@@ -1,0 +1,25 @@
+<br /><br /><br />
+<div id="view-content">
+	<h3 align="center" > Cities </h3>
+	<table class='table'>
+		<thead>
+		<tr>
+			<th>ID</th><th>City Name</th><th>Edit</th><th>Delete</th>
+		</tr>
+		</thead>
+		<?php
+		foreach($this->all_cities as $key => $value)
+		{
+			echo "<tr>".
+				"<td>" . $value['id'] . "</td>" .
+				"<td>" . $value['name'] . "</td>" .
+				"<td><a href='editcity/cid/".$value['id']."'>Edit</a></td>".
+				"<td><a href='deletecity/cid/".$value['id']."'>Delete</a></td>".
+				"</tr>";
+		}
+		?>
+
+	</table>
+
+</div>
+
