@@ -28,6 +28,18 @@ class Application_Model_City extends Zend_Db_Table_Abstract
 
         return $this->fetchAll()->toArray();
     }
+    function insertNewCity($citydata)
+    {
+        $row=$this->createRow();
+        $row->name=$citydata['name'];
+        $row->rate=$citydata['rate'];
+        $row->imag_path=$citydata['imag_path'];
+        $row->description=$citydata['description'];
+        $row->latitude=$citydata['latitude'];
+        $row->longitude=$citydata['longitude'];
+        $row->country_id=$citydata['country_id'];
+        $row->save();
+    }
 
 }
 
