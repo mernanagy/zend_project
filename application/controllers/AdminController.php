@@ -78,6 +78,10 @@ class AdminController extends Zend_Controller_Action
     {
         // action body
         $addcity_form=new Application_Form_Addcity();
+        //$addcity_form->image_path->setRequired();
+
+
+
         $city_obj=new Application_Model_City();
         $this->view->addcity_form=$addcity_form;
 
@@ -86,6 +90,7 @@ class AdminController extends Zend_Controller_Action
         {
             if($addcity_form->isValid($request->getPost()))
             {
+
                 $upload = new Zend_File_Transfer_Adapter_Http();
 //                $fname = $_FILES['image_path']['name'];
 //                $fsize = $_FILES['browse']['size'];
@@ -100,8 +105,63 @@ class AdminController extends Zend_Controller_Action
         }
     }
 
+    public function editcityAction()
+    {
+        // action body
+        
+
+    }
+
+    public function editcountryAction()
+    {
+        // action body
+        $editcountry_form=new Application_Form_Addcountry();
+        $country_obj=new Application_Model_Country();
+        $country_id=$this->_request->getParam('cid');
+        $countryById=$country_obj->getCountryById($country_id);
+        $editcountry_form->populate($countryById[0]);
+        $this->view->editcountry_form=$editcountry_form;
+
+        $request=$this->getRequest();
+        if($request->isPost())
+        {
+            if($editcountry_form->isValid($request->getPost()))
+            {
+                $upload = new Zend_File_Transfer_Adapter_Http();
+                //$upload->addFilter('Rename',"/var/www/html/zend_project/public/images/countries/".$_POST['name'].".jpeg");
+                $name=$_FILES['image_path']['name'];
+
+                if ($name != "") {
+                    $upload->addFilter('Rename',
+                        array('target' => "/var/www/html/zend_project/public/images/countries/" . $name ,
+                            'overwrite' => true));
+
+                    $_POST['image_path'] = "/images/countries/" . $name;
+                }
+
+                else{
+                    $_POST['image_path']="";
+                }
+
+                $upload->receive();
+
+
+
+
+
+
+                $country_obj->editCountry($_POST);
+                $this->redirect('/admin/allcountries');
+            }
+        }
+    }
+
 
 }
+
+
+
+
 
 
 
