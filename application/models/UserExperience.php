@@ -19,5 +19,9 @@ class Application_Model_UserExperience extends Zend_Db_Table_Abstract
             'onDelete'=>'cascade'
 
     ));
+
+    public function get_post_by_id ($post_id){
+        return $this->find($post_id)->current();
+    }
 }
 
