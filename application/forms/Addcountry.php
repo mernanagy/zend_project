@@ -14,6 +14,7 @@ class Application_Form_Addcountry extends Zend_Form
             'id'=>'newcountry'
         ));
         $id=new Zend_Form_Element_Hidden('id');
+
         $name=new Zend_Form_Element_Text('name');
         $name->setLabel('Country Name:');
         $name->setAttribs(array(
@@ -36,6 +37,7 @@ class Application_Form_Addcountry extends Zend_Form
         $image_path->setLabel('Upload an image:');
         $image_path->addValidator('Count', false, 1);
         $image_path->addValidator('Extension',false, 'jpg,jpeg,png,gif');
+
 
 
         $sumbit=new Zend_Form_Element_Submit('submit');

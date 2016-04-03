@@ -25,6 +25,7 @@
           <actionMethod actionName="addcity"/>
           <actionMethod actionName="editcity"/>
           <actionMethod actionName="editcountry"/>
+          <actionMethod actionName="deletecountry"/>
         </controllerFile>
       </controllersDirectory>
       <formsDirectory>
@@ -57,15 +58,12 @@
           <viewControllerScriptsDirectory forControllerName="Error">
             <viewScriptFile forActionName="error"/>
           </viewControllerScriptsDirectory>
-
           <viewControllerScriptsDirectory forControllerName="Index">
             <viewScriptFile forActionName="listCountries"/>
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Index">
             <viewScriptFile forActionName="listcities"/>
           </viewControllerScriptsDirectory>
-          <viewControllerScriptsDirectory forControllerName="Index">
-
           <viewControllerScriptsDirectory forControllerName="Admin">
             <viewScriptFile forActionName="index"/>
           </viewControllerScriptsDirectory>
@@ -86,7 +84,6 @@
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Admin">
             <viewScriptFile forActionName="addcountry"/>
-
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Admin">
             <viewScriptFile forActionName="addcity"/>
@@ -96,6 +93,9 @@
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Admin">
             <viewScriptFile forActionName="editcountry"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Admin">
+            <viewScriptFile forActionName="deletecountry"/>
           </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewHelpersDirectory/>

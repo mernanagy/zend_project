@@ -49,5 +49,9 @@ class Application_Model_Country extends Zend_Db_Table_Abstract
 
 
     }
+    function deletecountry($country_id)
+    {
+        $this->delete("id=$country_id");
+    }
 
 }
