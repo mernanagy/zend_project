@@ -17,7 +17,7 @@ class AdminController extends Zend_Controller_Action
     {
         // action body
         $country_obj=new Application_Model_Country();
-        $all_countries=$country_obj->list_All_Countries();
+        $all_countries=$country_obj->listCountries();
         $this->view->all_countries=$all_countries;
     }
 

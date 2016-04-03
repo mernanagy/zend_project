@@ -13,10 +13,6 @@ class IndexController extends Zend_Controller_Action
         // action body
     }
 
-    
-
-    
-
     public function listCountaryACityAction()
     {
         // action body
@@ -30,6 +26,8 @@ class IndexController extends Zend_Controller_Action
 
 
 }
+
+
 
 
 
