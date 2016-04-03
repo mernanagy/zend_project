@@ -27,6 +27,8 @@
           <actionMethod actionName="editcity"/>
           <actionMethod actionName="editcountry"/>
           <actionMethod actionName="deletecountry"/>
+          <actionMethod actionName="login"/>
+          <actionMethod actionName="home"/>
         </controllerFile>
         <controllerFile controllerName="City">
           <actionMethod actionName="index"/>
@@ -40,6 +42,8 @@
       <formsDirectory>
         <formFile formName="Addcountry"/>
         <formFile formName="Addcity"/>
+        <formFile formName="Login"/>
+        <formFile formName="Home"/>
       </formsDirectory>
       <layoutsDirectory>
         <layoutScriptsDirectory>
@@ -103,11 +107,9 @@
           <viewControllerScriptsDirectory forControllerName="Admin">
             <viewScriptFile forActionName="editcountry"/>
           </viewControllerScriptsDirectory>
-
           <viewControllerScriptsDirectory forControllerName="Admin">
             <viewScriptFile forActionName="deletecountry"/>
           </viewControllerScriptsDirectory>
-
           <viewControllerScriptsDirectory forControllerName="City">
             <viewScriptFile forActionName="index"/>
           </viewControllerScriptsDirectory>
@@ -122,6 +124,12 @@
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Article">
             <viewScriptFile forActionName="show"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Admin">
+            <viewScriptFile forActionName="login"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Admin">
+            <viewScriptFile forActionName="home"/>
           </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewHelpersDirectory/>

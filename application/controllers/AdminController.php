@@ -5,8 +5,23 @@ class AdminController extends Zend_Controller_Action
 
     public function init()
     {
-        /* Initialize action controller here */
-    }
+                 /* Initialize action controller here */
+            $authorization = Zend_Auth::getInstance();
+
+            if (!$authorization->hasIdentity())
+            {
+                if ($this->_request->getActionName() != 'login') {
+                    $this->redirect("admin/login");
+                }
+//}
+
+            }
+        }
+
+
+
+
+
 
     public function indexAction()
     {
@@ -161,8 +176,60 @@ class AdminController extends Zend_Controller_Action
 
     }
 
+    public function loginAction()
+    {
+        // action body
+
+
+        $login_form = new Application_Form_Login();
+        if ($this->_request->isPost()) {
+            if ($login_form->isValid($this->_request->getPost())) {
+
+                $email = $this->_request->getParam('name');
+                $password = $this->_request->getParam('password');
+                $db = Zend_Db_Table::getDefaultAdapter();
+                $authAdapter = new Zend_Auth_Adapter_DbTable($db, 'user', "name", 'password');
+                $authAdapter->setIdentity($email);
+                $authAdapter->setCredential($password);
+                $result = $authAdapter->authenticate();
+                if ($result->isValid()) {
+                    $auth = Zend_Auth::getInstance();
+                    $storage = $auth->getStorage();
+                    $type_of_user = $authAdapter->getResultRowObject('is_admin');
+            if ($type_of_user->is_admin == '1') {
+//$storage->write($authAdapter->getResultRowObject(array('id', 'email')));
+//return $this->redirect('/admin/show');
+//}
+
+                  $storage->write($authAdapter->getResultRowObject(array( 'id',
+                        'email')));
+                    return $this->redirect('/admin/home');
+                }} else {
+                    $this->view->error_message = "Invalid Emai or Password!";
+                    $this->_helper->layout->disableLayout();
+                }
+
+
+            }
+
+        }
+        $this->view->login_form = $login_form;
+        $this->_helper->layout->disableLayout();
+    }
+
+    public function homeAction()
+    {
+        // action body
+        $this->_helper->layout->disableLayout();
+        $this->view->home ;
+    }
+
 
 }
+
+
+
+
 
 
 

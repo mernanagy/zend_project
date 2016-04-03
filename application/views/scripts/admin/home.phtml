@@ -1,0 +1,41 @@
+
+<br /><br />
+<div class="container" >
+
+	<th>Mange Site:</th>
+	<table class="table table-striped table-bordered table-hover">
+		<?php
+
+
+echo  $this->home ;
+		echo "<tr>".
+				"<td>" . "Cities"
+				 .
+				"<td> <a class='btn btn-info' href='allcities'> All Cities </a> </td>" .
+				"<td> <a class='btn btn-danger' href='addcity'> Add New City </a> </td>" .
+				"<td> <a class='btn btn-warning' href='editcity'>Edit City </a> </td>"
+
+				."</tr>";
+
+		echo "<tr>".
+			"<td>" . "Countries"
+			.
+			"<td> <a class='btn btn-info' href='allcountries'> All Countries </a> </td>" .
+			"<td> <a class='btn btn-danger' href='addcountry'> Add New Country </a> </td>" .
+			"<td> <a class='btn btn-warning' href='editcountry'>Edit Country </a> </td>"
+
+			."</tr>";
+		echo "<tr>".
+			"<td>" . "Locations"
+			.
+			"<td> <a class='btn btn-info' href='alllocations'> All Location </a> </td>" .
+			"<td> <a class='btn btn-danger' href='addlocation'> Add New Location </a> </td>" .
+			"<td> <a class='btn btn-warning' href='editlocation'>Edit Location </a> </td>"
+
+			."</tr>";
+
+		?>
+	</table>
+
+</div>
+
