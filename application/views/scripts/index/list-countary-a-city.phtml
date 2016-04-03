@@ -142,7 +142,8 @@ echo '<div class="site-slider"> ';//top six countries
         foreach($this->countries as $key => $value)
         {
             echo'<li>';
-            echo "<img style='width:1600px; height:660px;' src='".$value['image_path']. "'"."alt='slider image 1'>";
+            
+            echo "<a href='/country/list-cities/id/".$value['id']."'><img style='width:1600px; height:660px;' src='".$value['image_path']. "'"."alt='slider image 1'></a>";
                 echo '<div class="container">';
                    echo ' <div class="row">';
                         echo '<div class="col-md-12 text-right">';
@@ -170,6 +171,7 @@ echo '<div class="site-slider"> ';//top six countries
                             foreach($this->countries as $key => $value)
                              { 
                             echo "<a data-slide-index='".$i."'"." href=''><img style='width:170px; height:80px;' src='".$value['image_path']."'"." alt='image 1'/></a>";
+                               
                               $i++;
                              }
                             
@@ -204,6 +206,7 @@ echo '<div class="site-slider"> ';//top six countries
                             echo'</div> <!-- /.overlay -->';
 
                             echo"<img style='width:400px; height:400px;' src='".$value['imag_path']."'". "alt=''>";
+
                         echo'</div> <!-- /.item-thumb -->';
                     echo'</div> <!-- /.product-item -->';
                 echo'</div> <!-- /.col-md-4-->';

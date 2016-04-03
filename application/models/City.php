@@ -62,5 +62,11 @@ class Application_Model_City extends Zend_Db_Table_Abstract
         return $city->findDependentRowset('Application_Model_Locations');
 
     }
+    public function get_cities_by_country_id($country_id)
+    {
+    
+       return $this->fetchAll("country_id=$country_id",null,null)->toArray();
+    }
+    
 }
 
