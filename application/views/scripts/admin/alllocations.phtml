@@ -2,7 +2,7 @@
 <div id="view-content">
 
 
-	<h3 align="center" > Locations </h3>
+	<h3 align="center" > Locations <a href='addlocation'>Add Location</a></h3>
 	<table class='table'>
 		<thead>
 		<tr>
@@ -15,8 +15,8 @@
 			echo "<tr>".
 				"<td>" . $value['id'] . "</td>" .
 				"<td>" . $value['name'] . "</td>" .
-				"<td><a href='editlocation/cid/".$value['id']."'>Edit</a></td>".
-				"<td><a href='deletelocation/cid/".$value['id']."'>Delete</a></td>".
+				"<td><a class='btn btn-success' href='editlocation/lid/".$value['id']."'>Edit</a></td>".
+				"<td><a class='btn btn-danger' href='deletelocation/lid/".$value['id']."'>Delete</a></td>".
 				"</tr>";
 		}
 		?>
