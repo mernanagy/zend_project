@@ -1,141 +1,5 @@
 <?php
 
-//echo "<div class='site-slider'>":
-	//<ul class='bxslider'>";
-    /*
-foreach($this->countries as $key => $value)
-{
-	//echo "<img src='".$value['image_path']."'><br>";
-	echo "
-	 <li>
-	 <img src='".
-	   $value["image_path"]."'"." alt='slider image 1'>
-	  <div class='container'>
-	  <div class='row'>
-	  <div class='col-md-12 text-right'>
-	  <div class='slider-caption'>
-                                <h2>HTML5 CSS3 Layout</h2>";
-
-
-
-}
-
-echo "</div>
-                            </div>
-                    </div>
-                </div>
-
-            </li>";
-
-echo "<div class='bx-thumbnail-wrapper' style='height:30px;'>
-            <div class='container'>
-                <div class='row'>
-                    <div class='col-md-12'>
-                        <div id='bx-pager'>";   
-
-foreach($this->countries as $key => $value)
-{   echo"<li style='float: none; list-style: outside none none; position: absolute; width: 1302px; z-index: 50;'>";
-	echo "<a data-slide-index='0' href=''>"."<img src='".$value["image_path"]."'"." alt='image 1' /></a>";
-    echo "</li>";
-} 
-echo "</div></div></div></div></div></div>"; 
-//////////////////////
-echo "<div id='products' class='content-section'>
-        <div class='container'>
-            <div class='row'>
-                <div class='col-md-12 text-center'>
-                    <h1 class='section-title'>Cities</h1>
-                </div> <!-- /.col-md-12 -->
-            </div> <!-- /.row -->
-            </div>
-            <div class='row'>";  
-
-foreach($this->cities as $key=>$value)
-    {
-            echo "
-                <div class='col-md-4 col-sm-6'>
-                    <div class='product-item'>
-                        <div class='item-thumb'>
-                            <span class='note'><img src='".$value["imag_path"]."'"." alt=''></span>
-                            <div class='overlay'>
-                                <div class='overlay-inner'>
-                                    <a href='#nogo' class='view-detail'></a>
-                                </div>
-                            </div> <!-- /.overlay -->
-                        </div> <!-- /.item-thumb -->
-                    </div> <!-- /.product-item -->
-                </div> <!-- /.col-md-4-->";
-               
-}
-*/
-
-////////////////////////////////////////////////////////////////////////////////////
-/*
-
-echo '<div class="site-slider">';
-echo '<div class="bx-wrapper" style="max-width: 100%;">';
-echo '<div class="bx-viewport" style="width: 100%; overflow: hidden; position: relative; height: 538px;">';
-echo '<ul class="bxslider" style="width: auto; position: relative;">';
-echo '<li style="float: none; list-style: outside none none; position: absolute; width: 1302px; z-index: 0; display: none;">';
-
-foreach($this->countries as $key => $value)
-{
-   //echo '<img alt="slider image 1" src='.$value['image_path']."'".'>';
-   echo "<img alt='slider image 1' src='".$value['image_path']."'>";
-   //echo $value['image_path'];
-
-}
-
-
-
-
-
-echo '<div class="container">';
-echo '<div class="row">';
-echo '<div class="col-md-12 text-right">';
-echo '<div class="slider-caption animated fadeInLeft">';
-echo '<h2>HTML5 CSS3 Layout</h2>';
-echo '</div>';
-echo '</div>';
-echo '</div>';
-echo '</div>';
-echo '</li>';
-echo '</ul>
-</div>';
-
-echo '<div class="bx-thumbnail-wrapper">';
-echo '<div class="container">';
-echo '<div class="row">';
-echo '<div class="col-md-12">';
-echo '<div id="bx-pager">';
-
-echo '<div class="bx-controls bx-has-controls-direction container">
-<div class="bx-controls-direction">
-<a class="bx-prev fa fa-angle-left" href=""></a>
-<a class="bx-next fa fa-angle-right" href=""></a>
-</div>
-</div>
-</div>';
-
-foreach($this->countries as $key => $value)
-{
-   //echo '<img alt="slider image 1" src='.$value['image_path']."'".'>';
-   echo "<img alt='slider image 1' src='".$value['image_path']."'>";
-   
-
-}
-
-
-echo'</div>';
-echo'</div>';
-echo'</div>';
-echo'</div>';
-echo'</div>';
-echo'</div>';
-
-
-*/
-/////////////////////////////////////////////////////////////////////////////////////////////
 
 echo '<div class="site-slider"> ';//top six countries
         echo '<ul class="bxslider">';
@@ -148,7 +12,7 @@ echo '<div class="site-slider"> ';//top six countries
                    echo ' <div class="row">';
                         echo '<div class="col-md-12 text-right">';
                            echo ' <div class="slider-caption">';
-                               echo ' <h2>HTML5 CSS3 Layout</h2>';
+                               echo ' <h2>'.$value['name'].'</h2>';
                            echo  '</div>';
                         echo '</div>';
                     echo '</div>';
@@ -218,48 +82,7 @@ echo '<div class="site-slider"> ';//top six countries
                 
                 echo '</div><!-- row-->';
                 
-                //<div class="col-md-4 col-sm-6">
-                    //<div class="product-item">
-                       // <div class="item-thumb">
-                           // <span class="note"><img src="images/small_logo_1.png" alt=""></span>
-                            //<div class="overlay">
-                               // <div class="overlay-inner">
-                                 //   <a href="#nogo" class="view-detail"></a>
-                             //   </div>
-                          //  </div> <!-- /.overlay -->
-                          //  <img src="images/products/product4.jpg" alt="">
-                    //    </div> <!-- /.item-thumb -->
-                 //   </div> <!-- /.product-item -->
-              //  </div> <!-- /.col-md-3 -->
-
-
-               // <div class="col-md-4 col-sm-6">
-                  //  <div class="product-item">
-                     //   <div class="item-thumb">
-                        //    <span class="note"><img src="images/small_logo_3.png" alt=""></span>
-                         //   <div class="overlay">
-                          //      <div class="overlay-inner">
-                            //        <a href="#nogo" class="view-detail"></a>
-                            //    </div>
-                         //   </div> <!-- /.overlay -->
-                         //   <img src="images/products/product5.jpg" alt="">
-                     //   </div> <!-- /.item-thumb -->
-                 //   </div> <!-- /.product-item -->
-             //   </div> <!-- /.col-md-3 -->
-
-            //    <div class="col-md-4 col-sm-6">
-            //        <div class="product-item">
-             //           <div class="item-thumb">
-              //              <span class="note"><img src="images/small_logo_1.png" alt=""></span>
-              //              <div class="overlay">
-               //                 <div class="overlay-inner">
-                //                    <a href="#nogo" class="view-detail"></a>
-                 //               </div>
-                 //           </div> <!-- /.overlay -->
-                 //           <img src="images/products/product6.jpg" alt="">
-                 //       </div> <!-- /.item-thumb -->
-                 //   </div> <!-- /.product-item -->
-             //   </div> <!-- /.col-md-3 -->
+                
            echo '</div> <!-- /.row -->';
            
         echo'</div> <!-- /.container -->';
