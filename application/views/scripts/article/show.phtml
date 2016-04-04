@@ -1,7 +1,42 @@
+
 <br> <br> <br>
+
 
 <h1 class="section-title" style="text-align: center"><?php echo $this->article->title;?></h1>
 
-<center><img style="width: 80%; " align="middle" src="<?php echo $this->article->image_path;?> " alt="No Image For This Article"></center>
-<h2 style="padding-left: 200px;"> <?php echo $this->article->content;?></h2>
+<center><img style="width: 90%; " align="middle" src="<?php echo $this->article->image_path;?> " alt="No Image For This Article"></center>
+<h2 style="padding-left: 123px; width: 90%"><pre > <?php echo $this->article->content;?></pre></h2>
 
+<div id="comments-container" style="width: 80%; font-size: 20px; padding-left: 280px;"></div>
+<script type="text/javascript" src="/resources/js/jquery-comments.js"></script>
+<script>
+
+    $("#comments-container").comments({
+        profilePictureURL: 'https://app.viima.com/static/media/user_profiles/user-icon.png',
+        newestText: '',
+        oldestText: '',
+
+        popularText: '',
+        sendText: 'Comment',
+
+        editText: 'Modify',
+        youText: 'User name',
+        highlightColor: 'green',
+        enableReplying: false,
+        enableUpvoting: false,
+        postCommentOnEnter: true,
+        roundProfilePictures:true,
+        //   readOnly: true, //vip
+        getComments: function(success, error) {
+            var commentsArray = [{
+                id: 1,
+                created: '2015-10-01',
+                content: 'Lorem ipsum dolort sit amet',
+                fullname: 'Simon Powell',
+                upvote_count: 2,
+                user_has_upvoted: false
+            }];
+            success(commentsArray);
+        }
+    });
+</script>
