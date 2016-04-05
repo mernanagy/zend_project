@@ -1,4 +1,24 @@
+<?php
+$article_id = $this->article_id;
 
+$auth = Zend_Auth::getInstance();
+$storage = $auth->getStorage();
+$sessionRead = $storage->read();
+
+if (!empty($sessionRead)) {
+
+    $name = $sessionRead->name;
+    $id = $sessionRead->id;
+    $image_path = $sessionRead->imag_path;
+    $read_only="false";
+}
+else{
+    $image_path="";
+    $read_only = "true";
+    $name="";
+    $id="";
+}
+?>
 <br> <br> <br>
 
 
@@ -12,7 +32,7 @@
 <script>
 
     $("#comments-container").comments({
-        profilePictureURL: 'https://app.viima.com/static/media/user_profiles/user-icon.png',
+        profilePictureURL: 'http://travel.com/<?php echo $image_path?>',
         newestText: '',
         oldestText: '',
 
@@ -20,13 +40,13 @@
         sendText: 'Comment',
 
         editText: 'Modify',
-        youText: 'User name',
+        youText: '<?php echo $name?>',
         highlightColor: 'green',
         enableReplying: false,
         enableUpvoting: false,
         postCommentOnEnter: true,
         roundProfilePictures:true,
-        //   readOnly: true, //vip
+           readOnly: <?php echo $read_only;?>, //vip
         getComments: function(success, error) {
             var commentsArray = [{
                 id: 1,

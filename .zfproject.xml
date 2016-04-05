@@ -36,6 +36,14 @@
           <actionMethod actionName="deletelocation"/>
           <actionMethod actionName="edithotel"/>
           <actionMethod actionName="deletehotel"/>
+
+          <actionMethod actionName="allusers"/>
+          <actionMethod actionName="blockuser"/>
+
+          <actionMethod actionName="deleteuser"/>
+          <actionMethod actionName="usertoadmin"/>
+
+
         </controllerFile>
         <controllerFile controllerName="City">
           <actionMethod actionName="index"/>
@@ -54,6 +62,10 @@
           <actionMethod actionName="index"/>
           <actionMethod actionName="login"/>
           <actionMethod actionName="signout"/>
+          <actionMethod actionName="posts"/>
+          <actionMethod actionName="hotel"/>
+          <actionMethod actionName="car"/>
+          <actionMethod actionName="updateprofile"/>
         </controllerFile>
       </controllersDirectory>
       <formsDirectory>
@@ -192,8 +204,36 @@
           <viewControllerScriptsDirectory forControllerName="User">
             <viewScriptFile forActionName="signout"/>
           </viewControllerScriptsDirectory>
+
           <viewControllerScriptsDirectory forControllerName="Country">
             <viewScriptFile forActionName="listCountry"/>
+
+          <viewControllerScriptsDirectory forControllerName="Admin">
+            <viewScriptFile forActionName="allusers"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Admin">
+            <viewScriptFile forActionName="blockuser"/>
+          </viewControllerScriptsDirectory>
+
+          <viewControllerScriptsDirectory forControllerName="Admin">
+            <viewScriptFile forActionName="deleteuser"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Admin">
+            <viewScriptFile forActionName="usertoadmin"/>
+          </viewControllerScriptsDirectory>
+
+          <viewControllerScriptsDirectory forControllerName="User">
+            <viewScriptFile forActionName="posts"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="User">
+            <viewScriptFile forActionName="hotel"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="User">
+            <viewScriptFile forActionName="car"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="User">
+            <viewScriptFile forActionName="updateprofile"/>
+
           </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewHelpersDirectory/>

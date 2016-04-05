@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Apr 05, 2016 at 10:16 AM
+-- Generation Time: Apr 05, 2016 at 03:07 PM
 -- Server version: 5.5.47-0ubuntu0.14.04.1
 -- PHP Version: 5.5.9-1ubuntu4.14
 
@@ -48,8 +48,8 @@ CREATE TABLE IF NOT EXISTS `city` (
   `rate` int(11) NOT NULL,
   `imag_path` varchar(100) NOT NULL,
   `description` varchar(300) NOT NULL,
-  `latitude` double NOT NULL,
-  `longitude` double NOT NULL,
+  `latitude` float NOT NULL,
+  `longitude` float NOT NULL,
   `country_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `country_id` (`country_id`)
@@ -60,7 +60,7 @@ CREATE TABLE IF NOT EXISTS `city` (
 --
 
 INSERT INTO `city` (`id`, `name`, `rate`, `imag_path`, `description`, `latitude`, `longitude`, `country_id`) VALUES
-(12, 'cairo', 5, '/images/cites/small_city.jpeg', 'any thing', 30.04439926147461, 31.235700607299805, 26);
+(12, 'cairo', 5, '/images/cites/3.jpg', 'any thing', 30.0444, 31.2357, 26);
 
 -- --------------------------------------------------------
 
@@ -160,20 +160,22 @@ CREATE TABLE IF NOT EXISTS `location` (
 
 CREATE TABLE IF NOT EXISTS `user` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `email` varchar(50) NOT NULL,
   `name` varchar(100) NOT NULL,
   `password` varchar(50) NOT NULL,
   `imag_path` varchar(100) NOT NULL DEFAULT '/images/users/default.jpeg',
   `is_active` int(11) NOT NULL DEFAULT '1',
   `is_admin` int(11) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `email` (`email`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
 --
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`id`, `name`, `password`, `imag_path`, `is_active`, `is_admin`) VALUES
-(1, 'ahmed', 'opensource', '/images/users/default.jpeg', 1, 0);
+INSERT INTO `user` (`id`, `email`, `name`, `password`, `imag_path`, `is_active`, `is_admin`) VALUES
+(1, 'ahmed@yahoo.com', 'ahmed', 'opensource', '/images/users/default.jpeg', 1, 0);
 
 -- --------------------------------------------------------
 

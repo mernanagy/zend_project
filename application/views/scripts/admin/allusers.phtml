@@ -1,0 +1,56 @@
+<div style="height:150px;"></div>
+<div id="view-content">
+	<h3 align="center" > Users </h3>
+	<table class='table'>
+		<thead>
+		<tr>
+			<th>ID</th><th>User Name</th><th>Is_Admin</th><th>BLock</th><th>Set Admin</th></th><th>Delete</th>
+		</tr>
+		</thead>
+		<?php
+		foreach($this->all_users as $key => $value)
+		{
+//			if($value['is_admin']==0)
+//			{
+//				echo "<tr>".
+//					"<td>" . $value['id'] . "</td>" .
+//				    "<td>" . $value['name'] . "</td>" ;
+//				if($value['is_active']==1)
+//				{
+//					echo"<td><a class='btn btn-danger' href='blockuser/uid/".$value['id']."'>Block</a></td>";
+//				}
+//				else{
+//					echo"<td><a class='btn btn-success' href='unblockuser/uid/".$value['id']."'>UnBlock</a></td>";
+//				}
+//				echo"<td><a class='btn btn-danger' href='deleteuser/uid/".$value['id']."'>Delete</a></td>".
+//
+//					"</tr>";
+//			}
+
+			echo "<tr>".
+					"<td>" . $value['id'] . "</td>" .
+				    "<td>" . $value['name'] . "</td>" ;
+			if($value['is_admin']==1)
+			{
+				echo"<td>Admin</td><td></td><td></td><td></td></tr>";
+			}
+			else{
+				 echo"<td></td>";
+				if($value['is_active']==1)
+				{
+					echo"<td><a class='btn btn-danger' href='blockuser/uid/".$value['id']."'>Block</a></td>";
+				}
+				else{
+					echo"<td><a class='btn btn-success' href='unblockuser/uid/".$value['id']."'>UnBlock</a></td>";
+				}
+				echo"<td><a class='btn btn-success' href='usertoadmin/uid/".$value['id']."'>SetAdmin</a></td>".
+					"<td><a class='btn btn-danger' href='deleteuser/uid/".$value['id']."'>Delete</a></td>".
+					"</tr>";
+			}
+
+
+		}
+		?>
+
+	</table>
+</div>

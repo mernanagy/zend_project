@@ -5,17 +5,16 @@ class AdminController extends Zend_Controller_Action
 
     public function init()
     {
-                 /* Initialize action controller here */
-            $authorization = Zend_Auth::getInstance();
+        /* Initialize action controller here */
+        $authorization = Zend_Auth::getInstance();
 
-            if (!$authorization->hasIdentity())
-            {
-                if ($this->_request->getActionName() != 'login') {
-                    $this->redirect("admin/login");
-                }
+        if (!$authorization->hasIdentity()) {
+            if ($this->_request->getActionName() != 'login') {
+                $this->redirect("admin/login");
+            }
 //}
 
-            }
+        }
     }
 
     public function indexAction()
@@ -26,53 +25,63 @@ class AdminController extends Zend_Controller_Action
     public function allcountriesAction()
     {
         // action body
-        $country_obj=new Application_Model_Country();
-        $all_countries=$country_obj->listCountries();
-        $this->view->all_countries=$all_countries;
+        $country_obj = new Application_Model_Country();
+        $all_countries = $country_obj->listCountries();
+        $this->view->all_countries = $all_countries;
     }
 
     public function allcitiesAction()
     {
         // action body
-        $city_obj=new Application_Model_City();
-        $all_cities=$city_obj->list_All_Cities();
-        $this->view->all_cities=$all_cities;
+        $city_obj = new Application_Model_City();
+        $all_cities = $city_obj->list_All_Cities();
+        $this->view->all_cities = $all_cities;
     }
 
     public function alllocationsAction()
     {
         // action body
-        $location_obj=new Application_Model_Locations();
-        $all_locations=$location_obj->list_All_Locations();
-        $this->view->all_locations=$all_locations;
+        $location_obj = new Application_Model_Locations();
+        $all_locations = $location_obj->list_All_Locations();
+        $this->view->all_locations = $all_locations;
     }
 
     public function allhotelsAction()
     {
         // action body
-        $hotels_obj=new Application_Model_Hotels();
-        $all_hotels=$hotels_obj->list_All_Hotels();
-        $this->view->all_hotels=$all_hotels;
+        $hotels_obj = new Application_Model_Hotels();
+        $all_hotels = $hotels_obj->list_All_Hotels();
+        $this->view->all_hotels = $all_hotels;
+    }
+
+    public function allusersAction()
+    {
+        // action body
+        $user_obj = new Application_Model_User();
+        $all_users = $user_obj->list_All_users();
+        $this->view->all_users = $all_users;
+
     }
 
     public function addcountryAction()
     {
         // action body
-        $addcountry_form=new Application_Form_Addcountry();
+        $addcountry_form = new Application_Form_Addcountry();
         $addcountry_form->image_path->setRequired();
 
-        $country_obj=new Application_Model_Country();
-        $this->view->addcountry_form=$addcountry_form;
+        $country_obj = new Application_Model_Country();
+        $this->view->addcountry_form = $addcountry_form;
 
-        $request=$this->getRequest();
-        if($request->isPost())
-        {
-            if($addcountry_form->isValid($request->getPost()))
-            {
+        $request = $this->getRequest();
+        if ($request->isPost()) {
+            if ($addcountry_form->isValid($request->getPost())) {
                 $upload = new Zend_File_Transfer_Adapter_Http();
-                $upload->addFilter('Rename',"/var/www/html/zend_project/public/images/countries/".$_POST['name'].".jpeg");
+                //$upload->addFilter('Rename',"/var/www/html/zend_project/public/images/countries/".$_POST['name'].".jpeg");
+                $upload->addFilter('Rename',
+                    array('target' => "/var/www/html/zend_project/public/images/countries/" . $_POST['name'] . ".jpeg",
+                        'overwrite' => true));
                 $upload->receive();
-                $_POST['image_path']="/images/countries/".$_POST['name'].".jpeg";
+                $_POST['image_path'] = "/images/countries/" . $_POST['name'] . ".jpeg";
                 $country_obj->insertNewCountry($_POST);
                 $this->redirect('/admin/allcountries');
             }
@@ -83,27 +92,25 @@ class AdminController extends Zend_Controller_Action
     public function addcityAction()
     {
         // action body
-        $addcity_form=new Application_Form_Addcity();
+        $addcity_form = new Application_Form_Addcity();
         $addcity_form->imag_path->setRequired();
 
 
-        $city_obj=new Application_Model_City();
-        $this->view->addcity_form=$addcity_form;
+        $city_obj = new Application_Model_City();
+        $this->view->addcity_form = $addcity_form;
 
-        $request=$this->getRequest();
-        if($request->isPost())
-        {
-            if($addcity_form->isValid($request->getPost()))
-            {
+        $request = $this->getRequest();
+        if ($request->isPost()) {
+            if ($addcity_form->isValid($request->getPost())) {
 
                 $upload = new Zend_File_Transfer_Adapter_Http();
-//                $fname = $_FILES['image_path']['name'];
-//                $fsize = $_FILES['browse']['size'];
-//                $ferror = $_FILES['browse']['error'];
-                $upload->addFilter('Rename',"/var/www/html/zend_project/public/images/cites/".$_POST['name'].".jpeg");
+                //$upload->addFilter('Rename',"/var/www/html/zend_project/public/images/cites/".$_POST['name'].".jpeg");
+                $upload->addFilter('Rename',
+                    array('target' => "/var/www/html/zend_project/public/images/cites/" . $_POST['name'] . ".jpeg",
+                        'overwrite' => true));
                 $upload->receive();
                 // $path="/images/countries/".$_POST['name'].".jpeg";
-                $_POST['imag_path']="/images/cites/".$_POST['name'].".jpeg";
+                $_POST['imag_path'] = "/images/cites/" . $_POST['name'] . ".jpeg";
                 $city_obj->insertNewCity($_POST);
                 $this->redirect('/admin/allcities');
             }
@@ -113,22 +120,24 @@ class AdminController extends Zend_Controller_Action
     public function addlocationAction()
     {
         // action body
-        $addlocation_form=new Application_Form_Addlocation();
+        $addlocation_form = new Application_Form_Addlocation();
         $addlocation_form->imag_path->setRequired();
 
 
-        $location_obj=new Application_Model_Locations();
-        $this->view->addlocation_form=$addlocation_form;
-        $request=$this->getRequest();
-        if($request->isPost())
-        {
-            if($addlocation_form->isValid($request->getPost()))
-            {
+        $location_obj = new Application_Model_Locations();
+        $this->view->addlocation_form = $addlocation_form;
+        $request = $this->getRequest();
+        if ($request->isPost()) {
+            if ($addlocation_form->isValid($request->getPost())) {
 
                 $upload = new Zend_File_Transfer_Adapter_Http();
-                $upload->addFilter('Rename',"/var/www/html/zend_project/public/images/location/".$_POST['name'].".jpeg");
+                //$upload->addFilter('Rename',"/var/www/html/zend_project/public/images/location/".$_POST['name'].".jpeg");
+                $upload->addFilter('Rename',
+                    array('target' => "/var/www/html/zend_project/public/images/location/" . $_POST['name'] . ".jpeg",
+                        'overwrite' => true));
+
                 $upload->receive();
-                $_POST['imag_path']="/images/location/".$_POST['name'].".jpeg";
+                $_POST['imag_path'] = "/images/location/" . $_POST['name'] . ".jpeg";
                 $location_obj->insertNewLocation($_POST);
                 $this->redirect('/admin/alllocations');
             }
@@ -140,14 +149,12 @@ class AdminController extends Zend_Controller_Action
     public function addhotelAction()
     {
         // action body
-        $addhotel_form=new Application_Form_Addhotel();
-        $hotel_obj=new Application_Model_Hotels();
-        $this->view->addhotel_form=$addhotel_form;
-        $request=$this->getRequest();
-        if($request->isPost())
-        {
-            if($addhotel_form->isValid($request->getPost()))
-            {
+        $addhotel_form = new Application_Form_Addhotel();
+        $hotel_obj = new Application_Model_Hotels();
+        $this->view->addhotel_form = $addhotel_form;
+        $request = $this->getRequest();
+        if ($request->isPost()) {
+            if ($addhotel_form->isValid($request->getPost())) {
                 $hotel_obj->insertNewHotel($_POST);
                 $this->redirect('/admin/allhotels');
             }
@@ -158,30 +165,26 @@ class AdminController extends Zend_Controller_Action
     public function editcityAction()
     {
         // action body
-        $editcity_form=new Application_Form_Addcity();
-        $city_obj=new Application_Model_City();
-        $city_id=$this->_request->getParam('cid');
-        $cityById=$city_obj->get_city_by_id_Array($city_id);
+        $editcity_form = new Application_Form_Addcity();
+        $city_obj = new Application_Model_City();
+        $city_id = $this->_request->getParam('cid');
+        $cityById = $city_obj->get_city_by_id_Array($city_id);
         $editcity_form->populate($cityById[0]);
-        $this->view->editcity_form=$editcity_form;
+        $this->view->editcity_form = $editcity_form;
 
-        $request=$this->getRequest();
-        if($request->isPost())
-        {
-            if($editcity_form->isValid($request->getPost()))
-            {
-                $upload=new Zend_File_Transfer_Adapter_Http();
-                $name=$_FILES['imag_path']['name'];
+        $request = $this->getRequest();
+        if ($request->isPost()) {
+            if ($editcity_form->isValid($request->getPost())) {
+                $upload = new Zend_File_Transfer_Adapter_Http();
+                $name = $_FILES['imag_path']['name'];
 
-                if ($name != "")
-                {
+                if ($name != "") {
                     $upload->addFilter('Rename',
-                        array('target' => "/var/www/html/zend_project/public/images/cites/" . $name ,
+                        array('target' => "/var/www/html/zend_project/public/images/cites/" . $name,
                             'overwrite' => true));
-                    $_POST['imag_path']="/images/cites/".$name;
-                }
-                else{
-                    $_POST['imag_path']="";
+                    $_POST['imag_path'] = "/images/cites/" . $name;
+                } else {
+                    $_POST['imag_path'] = "";
 
                 }
                 $upload->receive();
@@ -196,31 +199,27 @@ class AdminController extends Zend_Controller_Action
     public function editcountryAction()
     {
         // action body
-        $editcountry_form=new Application_Form_Addcountry();
-        $country_obj=new Application_Model_Country();
-        $country_id=$this->_request->getParam('cid');
-        $countryById=$country_obj->getCountryById($country_id);
+        $editcountry_form = new Application_Form_Addcountry();
+        $country_obj = new Application_Model_Country();
+        $country_id = $this->_request->getParam('cid');
+        $countryById = $country_obj->getCountryById($country_id);
         $editcountry_form->populate($countryById[0]);
-        $this->view->editcountry_form=$editcountry_form;
+        $this->view->editcountry_form = $editcountry_form;
 
-        $request=$this->getRequest();
-        if($request->isPost())
-        {
-            if($editcountry_form->isValid($request->getPost()))
-            {
+        $request = $this->getRequest();
+        if ($request->isPost()) {
+            if ($editcountry_form->isValid($request->getPost())) {
                 $upload = new Zend_File_Transfer_Adapter_Http();
-                $name=$_FILES['image_path']['name'];
+                $name = $_FILES['image_path']['name'];
 
                 if ($name != "") {
                     $upload->addFilter('Rename',
-                        array('target' => "/var/www/html/zend_project/public/images/countries/" . $name ,
+                        array('target' => "/var/www/html/zend_project/public/images/countries/" . $name,
                             'overwrite' => true));
 
                     $_POST['image_path'] = "/images/countries/" . $name;
-                }
-
-                else{
-                    $_POST['image_path']="";
+                } else {
+                    $_POST['image_path'] = "";
                 }
 
                 $upload->receive();
@@ -234,31 +233,27 @@ class AdminController extends Zend_Controller_Action
     public function editlocationAction()
     {
         // action body
-        $editlocation_form=new Application_Form_Addlocation();
-        $location_obj=new Application_Model_Locations();
-        $location_id=$this->_request->getParam('lid');
-        $locationById=$location_obj->getLocationById($location_id);
+        $editlocation_form = new Application_Form_Addlocation();
+        $location_obj = new Application_Model_Locations();
+        $location_id = $this->_request->getParam('lid');
+        $locationById = $location_obj->getLocationById($location_id);
         $editlocation_form->populate($locationById[0]);
-        $this->view->editlocation_form=$editlocation_form;
+        $this->view->editlocation_form = $editlocation_form;
 
-        $request=$this->getRequest();
-        if($request->isPost())
-        {
-            if($editlocation_form->isValid($request->getPost()))
-            {
+        $request = $this->getRequest();
+        if ($request->isPost()) {
+            if ($editlocation_form->isValid($request->getPost())) {
                 $upload = new Zend_File_Transfer_Adapter_Http();
-                $name=$_FILES['imag_path']['name'];
+                $name = $_FILES['imag_path']['name'];
 
                 if ($name != "") {
                     $upload->addFilter('Rename',
-                        array('target' => "/var/www/html/zend_project/public/images/location/" . $name ,
+                        array('target' => "/var/www/html/zend_project/public/images/location/" . $name,
                             'overwrite' => true));
 
                     $_POST['imag_path'] = "/images/location/" . $name;
-                }
-
-                else{
-                    $_POST['imag_path']="";
+                } else {
+                    $_POST['imag_path'] = "";
                 }
 
                 $upload->receive();
@@ -273,18 +268,16 @@ class AdminController extends Zend_Controller_Action
     public function edithotelAction()
     {
         // action body
-        $edithotel_form=new Application_Form_Addhotel();
-        $hotel_obj=new Application_Model_Hotels();
-        $hotel_id=$this->_request->getParam('hid');
-        $hotelById=$hotel_obj->getHotelById($hotel_id);
+        $edithotel_form = new Application_Form_Addhotel();
+        $hotel_obj = new Application_Model_Hotels();
+        $hotel_id = $this->_request->getParam('hid');
+        $hotelById = $hotel_obj->getHotelById($hotel_id);
         $edithotel_form->populate($hotelById[0]);
-        $this->view->edithotel_form=$edithotel_form;
+        $this->view->edithotel_form = $edithotel_form;
 
-        $request=$this->getRequest();
-        if($request->isPost())
-        {
-            if($edithotel_form->isValid($request->getPost()))
-            {
+        $request = $this->getRequest();
+        if ($request->isPost()) {
+            if ($edithotel_form->isValid($request->getPost())) {
                 $hotel_obj->edithotel($_POST);
                 $this->redirect('/admin/allhotels');
             }
@@ -296,13 +289,12 @@ class AdminController extends Zend_Controller_Action
     {
         // action body
 
-        $country_id=$this->_request->getParam('cid');
-        $country_obj=new Application_Model_Country();
+        $country_id = $this->_request->getParam('cid');
+        $country_obj = new Application_Model_Country();
         $country_obj->deletecountry($country_id);
         $this->redirect('/admin/allcountries');
 
     }
-
 
     public function loginAction()
     {
@@ -324,15 +316,16 @@ class AdminController extends Zend_Controller_Action
                     $auth = Zend_Auth::getInstance();
                     $storage = $auth->getStorage();
                     $type_of_user = $authAdapter->getResultRowObject('is_admin');
-            if ($type_of_user->is_admin == '1') {
+                    if ($type_of_user->is_admin == '1') {
 //$storage->write($authAdapter->getResultRowObject(array('id', 'email')));
 //return $this->redirect('/admin/show');
 //}
 
-                  $storage->write($authAdapter->getResultRowObject(array( 'id',
-                        'email')));
-                    return $this->redirect('/admin/home');
-                }} else {
+                        $storage->write($authAdapter->getResultRowObject(array('id',
+                            'name','imag_path','is_admin')));
+                        return $this->redirect('/admin/home');
+                    }
+                } else {
                     $this->view->error_message = "Invalid Emai or Password!";
                     //$this->_helper->layout->disableLayout();
                 }
@@ -349,7 +342,7 @@ class AdminController extends Zend_Controller_Action
     {
         // action body
         //$this->_helper->layout->disableLayout();
-        $this->view->home ;
+        $this->view->home;
     }
 
     public function logoutAction()
@@ -360,12 +353,11 @@ class AdminController extends Zend_Controller_Action
 
     }
 
-
     public function deletecityAction()
     {
         // action body
-        $city_id=$this->_request->getParam('cid');
-        $city_obj=new Application_Model_City();
+        $city_id = $this->_request->getParam('cid');
+        $city_obj = new Application_Model_City();
         $city_obj->deletecity($city_id);
         $this->redirect('/admin/allcities');
     }
@@ -373,8 +365,8 @@ class AdminController extends Zend_Controller_Action
     public function deletelocationAction()
     {
         // action body
-        $location_id=$this->_request->getParam('lid');
-        $location_obj=new Application_Model_Locations();
+        $location_id = $this->_request->getParam('lid');
+        $location_obj = new Application_Model_Locations();
         $location_obj->deletelocation($location_id);
         $this->redirect('/admin/alllocations');
     }
@@ -382,47 +374,52 @@ class AdminController extends Zend_Controller_Action
     public function deletehotelAction()
     {
         // action body
-        $hotel_id=$this->_request->getParam('hid');
-        $hotel_obj=new Application_Model_Hotels();
+        $hotel_id = $this->_request->getParam('hid');
+        $hotel_obj = new Application_Model_Hotels();
         $hotel_obj->deletehotel($hotel_id);
         $this->redirect('/admin/allhotels');
 
     }
 
+    public function blockuserAction()
+    {
+        // action body
+        $user_obj = new Application_Model_User();
+        $user_id = $this->_request->getParam('uid');
+        $user_obj->blockuser($user_id);
+        $this->redirect('/admin/allusers');
+    }
+
+    public function unblockuserAction()
+    {
+        // action body
+        $user_obj = new Application_Model_User();
+        $user_id = $this->_request->getParam('uid');
+        $user_obj->unblockuser($user_id);
+        $this->redirect('/admin/allusers');
+    }
+
+    public function deleteuserAction()
+    {
+        // action body
+        $user_id = $this->_request->getParam('uid');
+        $user_obj = new Application_Model_User();
+        $user_obj->deleteuser($user_id);
+        $this->redirect('/admin/allusers');
+
+    }
+
+    public function usertoadminAction()
+    {
+        // action body
+        $user_obj = new Application_Model_User();
+        $user_id = $this->_request->getParam('uid');
+        $user_obj->usertoadmin($user_id);
+        $this->redirect('/admin/allusers');
+    }
+
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
