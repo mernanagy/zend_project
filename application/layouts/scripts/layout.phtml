@@ -33,7 +33,28 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/">Home</a>
+
+            <?php
+            $href = "/";
+            $auth = Zend_Auth::getInstance();
+            $storage = $auth->getStorage();
+            $sessionRead = $storage->read();
+
+            if (!empty($sessionRead)) {
+
+                $name = $sessionRead->name;
+                $id = $sessionRead->id;
+                $image_path = $sessionRead->imag_path;
+                $is_admin = $sessionRead->is_admin;
+                if ($is_admin == '1')
+                {
+                        $href='/admin/home';
+                }
+            }
+
+            ?>
+            <a class="navbar-brand" href="<?php echo $href?>">Home</a>
+
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -72,10 +93,18 @@
                     $name = $sessionRead->name;
                     $id = $sessionRead->id;
                     $image_path = $sessionRead->imag_path;
+                    $is_admin = $sessionRead->is_admin;
+
                     ?>
                     <li><img class="user_image" src="<?php echo $image_path;?>"></li>
 
                     <li class="navbar-brand">Welcome <?php echo $name;?></li>
+
+                    <?php
+
+                    if ($is_admin != '1')
+                    {
+                    ?>
                     <li><a class="btn btn-success" style="color: white;" href="/user/posts/user_id/<?php echo $id;?>">My Posts</a></li>
                     <li><a></a></li>
                     <li><a  style="color: white;" class="btn btn-info" href="/user/hotel/user_id/<?php echo $id;?>" >Reserve Hotel</a></li>
@@ -84,6 +113,7 @@
                     <li><a></a></li>
                     <li><a style="color: white;" class="btn btn-primary" href="/user/updateprofile/user_id/<?php echo $id;?>" >Update Profile</a></li>
                     <li><a></a></li>
+                    <?php }?>
                     <li> <a href="/user/signout" style="color: white;"  class="btn btn-danger" >Sign Out</a> </li>
 
 

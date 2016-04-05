@@ -44,7 +44,7 @@ class UserController extends Zend_Controller_Action
                     $auth = Zend_Auth::getInstance();
                     $storage= $auth->getStorage();
 
-                    $storage->write($authAdapter->getResultRowObject(array('id', 'name','imag_path')));
+                    $storage->write($authAdapter->getResultRowObject(array('id', 'name','imag_path','is_admin')));
 
                     $message['type'] = 'success';
                     $message['message'] = 'http://travel.com/index/list-countary-a-city';
