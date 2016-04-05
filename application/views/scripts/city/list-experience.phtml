@@ -77,7 +77,7 @@ echo '<h3>'. $this->paginator. '</h3>';
 
 
 
-<script src="https://maps.googleapis.com/maps/api/js" async defer> </script>
+
 
 
 <script>
@@ -85,13 +85,15 @@ echo '<h3>'. $this->paginator. '</h3>';
 	function initMap() {
 		var mapDiv = document.getElementById('map');
 		var map = new google.maps.Map(mapDiv,{
-			center: {lat:<?php echo $this->city_data->latitude?>  , lng:  <?php echo $this->city_data->longitude?>},
+			center: {lat: <?php echo $this->city_data->latitude;?> , lng: <?php echo $this->city_data->longitude;?> },
 			zoom: 11
 		});
+
+	 
 	}
+
 
 
 </script>
 
-
-<script src="https://maps.googleapis.com/maps/api/js?callback=initMap" async defer></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDPkb_jRHkBk1cIL8jUnGD9E80u3Tx5WQU&callback=initMap" async defer></script>
