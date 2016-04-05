@@ -36,14 +36,10 @@
           <actionMethod actionName="deletelocation"/>
           <actionMethod actionName="edithotel"/>
           <actionMethod actionName="deletehotel"/>
-
           <actionMethod actionName="allusers"/>
           <actionMethod actionName="blockuser"/>
-
           <actionMethod actionName="deleteuser"/>
           <actionMethod actionName="usertoadmin"/>
-
-
         </controllerFile>
         <controllerFile controllerName="City">
           <actionMethod actionName="index"/>
@@ -75,6 +71,8 @@
         <formFile formName="Home"/>
         <formFile formName="Addlocation"/>
         <formFile formName="Addhotel"/>
+        <formFile formName="UserEdit"/>
+        <formFile formName="UserEdit"/>
       </formsDirectory>
       <layoutsDirectory>
         <layoutScriptsDirectory>
@@ -91,6 +89,8 @@
         <modelFile modelName="CarRental"/>
         <modelFile modelName="HotelReservation"/>
         <modelFile modelName="User"/>
+        <modelFile modelName="Updateuser"/>
+        <modelFile modelName="UpdateUsers"/>
       </modelsDirectory>
       <modulesDirectory enabled="false"/>
       <servicesDirectory enabled="false"/>
@@ -204,24 +204,21 @@
           <viewControllerScriptsDirectory forControllerName="User">
             <viewScriptFile forActionName="signout"/>
           </viewControllerScriptsDirectory>
-
           <viewControllerScriptsDirectory forControllerName="Country">
             <viewScriptFile forActionName="listCountry"/>
-
+          </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Admin">
             <viewScriptFile forActionName="allusers"/>
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Admin">
             <viewScriptFile forActionName="blockuser"/>
           </viewControllerScriptsDirectory>
-
           <viewControllerScriptsDirectory forControllerName="Admin">
             <viewScriptFile forActionName="deleteuser"/>
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Admin">
             <viewScriptFile forActionName="usertoadmin"/>
           </viewControllerScriptsDirectory>
-
           <viewControllerScriptsDirectory forControllerName="User">
             <viewScriptFile forActionName="posts"/>
           </viewControllerScriptsDirectory>
@@ -233,7 +230,6 @@
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="User">
             <viewScriptFile forActionName="updateprofile"/>
-
           </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewHelpersDirectory/>

@@ -87,6 +87,23 @@ class UserController extends Zend_Controller_Action
     public function updateprofileAction()
     {
         // action body
+        $form=new Application_Form_UserEdit();
+        $user_model= new Application_Model_User();
+        $id = $this->_request->getParam('user_id');
+        $dataUser = $user_model->userByid($id);
+        $form->populate($dataUser[0]);
+        $this->view->dataUser=$form;
+        $request = $this->getRequest ();
+        if($request-> isPost()){
+            if($form-> isValid($request-> getPost())){
+               $user_model->updateuser($id,$_POST);
+               $this->redirect('/index/list-countary-a-city');
+            }
+
+        }
+        
+
+         
     }
 
 

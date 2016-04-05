@@ -32,7 +32,7 @@ class CountryController extends Zend_Controller_Action
         $country_model=new Application_Model_Country();
         //$this->layout()->Country=$country_model;
 
-        Zend_Layout::getMvcInstance()->assign('Country', $country_model);
+        //Zend_Layout::getMvcInstance()->assign('Country', $country_model);
     }
 
 
