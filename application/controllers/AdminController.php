@@ -45,6 +45,15 @@ class AdminController extends Zend_Controller_Action
         $this->view->all_hotels=$all_hotels;
     }
 
+    public function allusersAction()
+    {
+        // action body
+        $user_obj=new Application_Model_User();
+        $all_users=$user_obj->list_All_users();
+        $this->view->all_users=$all_users;
+
+    }
+
     public function addcountryAction()
     {
         // action body
@@ -60,7 +69,10 @@ class AdminController extends Zend_Controller_Action
             if($addcountry_form->isValid($request->getPost()))
             {
                 $upload = new Zend_File_Transfer_Adapter_Http();
-                $upload->addFilter('Rename',"/var/www/html/zend_project/public/images/countries/".$_POST['name'].".jpeg");
+                //$upload->addFilter('Rename',"/var/www/html/zend_project/public/images/countries/".$_POST['name'].".jpeg");
+                $upload->addFilter('Rename',
+                    array('target' => "/var/www/html/zend_project/public/images/countries/" . $_POST['name'].".jpeg" ,
+                        'overwrite' => true));
                 $upload->receive();
                 $_POST['image_path']="/images/countries/".$_POST['name'].".jpeg";
                 $country_obj->insertNewCountry($_POST);
@@ -87,10 +99,10 @@ class AdminController extends Zend_Controller_Action
             {
 
                 $upload = new Zend_File_Transfer_Adapter_Http();
-//                $fname = $_FILES['image_path']['name'];
-//                $fsize = $_FILES['browse']['size'];
-//                $ferror = $_FILES['browse']['error'];
-                $upload->addFilter('Rename',"/var/www/html/zend_project/public/images/cites/".$_POST['name'].".jpeg");
+                //$upload->addFilter('Rename',"/var/www/html/zend_project/public/images/cites/".$_POST['name'].".jpeg");
+                $upload->addFilter('Rename',
+                    array('target' => "/var/www/html/zend_project/public/images/cites/" . $_POST['name'].".jpeg" ,
+                        'overwrite' => true));
                 $upload->receive();
                 // $path="/images/countries/".$_POST['name'].".jpeg";
                 $_POST['imag_path']="/images/cites/".$_POST['name'].".jpeg";
@@ -116,7 +128,11 @@ class AdminController extends Zend_Controller_Action
             {
 
                 $upload = new Zend_File_Transfer_Adapter_Http();
-                $upload->addFilter('Rename',"/var/www/html/zend_project/public/images/location/".$_POST['name'].".jpeg");
+                //$upload->addFilter('Rename',"/var/www/html/zend_project/public/images/location/".$_POST['name'].".jpeg");
+                $upload->addFilter('Rename',
+                    array('target' => "/var/www/html/zend_project/public/images/location/" . $_POST['name'].".jpeg" ,
+                        'overwrite' => true));
+
                 $upload->receive();
                 $_POST['imag_path']="/images/location/".$_POST['name'].".jpeg";
                 $location_obj->insertNewLocation($_POST);
@@ -320,8 +336,31 @@ class AdminController extends Zend_Controller_Action
         $this->redirect('/admin/allhotels');
     }
 
+    public function blockuserAction()
+    {
+        // action body
+        $user_obj=new Application_Model_User();
+        $user_id=$this->_request->getParam('uid');
+       // $is_active=$user_obj->getstatus($user_id);
+        $user_obj->blockuser($user_id);
+        $this->redirect('/admin/allusers');
+    }
+    public function unblockuserAction()
+    {
+        // action body
+        $user_obj=new Application_Model_User();
+        $user_id=$this->_request->getParam('uid');
+        // $is_active=$user_obj->getstatus($user_id);
+        $user_obj->unblockuser($user_id);
+        $this->redirect('/admin/allusers');
+    }
+
 
 }
+
+
+
+
 
 
 
