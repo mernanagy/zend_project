@@ -62,6 +62,8 @@
           <actionMethod actionName="hotel"/>
           <actionMethod actionName="car"/>
           <actionMethod actionName="updateprofile"/>
+          <actionMethod actionName="addpost"/>
+          <actionMethod actionName="editpost"/>
         </controllerFile>
       </controllersDirectory>
       <formsDirectory>
@@ -71,8 +73,12 @@
         <formFile formName="Home"/>
         <formFile formName="Addlocation"/>
         <formFile formName="Addhotel"/>
+
         <formFile formName="UserEdit"/>
         <formFile formName="UserEdit"/>
+
+        <formFile formName="Post"/>
+
       </formsDirectory>
       <layoutsDirectory>
         <layoutScriptsDirectory>
@@ -207,6 +213,7 @@
           <viewControllerScriptsDirectory forControllerName="Country">
             <viewScriptFile forActionName="listCountry"/>
           </viewControllerScriptsDirectory>
+
           <viewControllerScriptsDirectory forControllerName="Admin">
             <viewScriptFile forActionName="allusers"/>
           </viewControllerScriptsDirectory>
@@ -230,6 +237,12 @@
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="User">
             <viewScriptFile forActionName="updateprofile"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="User">
+            <viewScriptFile forActionName="addpost"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="User">
+            <viewScriptFile forActionName="editpost"/>
           </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewHelpersDirectory/>

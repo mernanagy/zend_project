@@ -1,4 +1,28 @@
-<br /><br />
+<div style="height:120px;"></div>
 <div id="view-content">
-	<p>View script for controller <b>User</b> and script/action name <b>posts</b></p>
+	<?php
+	$user_id=$this->user_id;
+	echo "<h3 align='center'> Posts <a href='/user/addpost/user_id/".$user_id."'>Add Post</a></h3>"
+	?>
+
+	<table class='table'>
+		<thead>
+		<tr>
+			<th>ID</th><th>Post Title</th><th>Edit</th><th>Delete</th>
+		</tr>
+		</thead>
+		<?php
+		foreach($this->postByUserId as $key => $value)
+		{
+			echo "<tr>".
+				"<td>" . $value['id'] . "</td>" .
+				"<td>" . $value['title'] . "</td>" .
+				"<td><a class='btn btn-success' href='/user/editpost/pid/".$value['id']."/user_id/".$user_id."'>Edit</a></td>".
+				"<td><a class='btn btn-danger' href='deletepost/pid/".$value['id']."'>Delete</a></td>".
+				"</tr>";
+		}
+		?>
+
+	</table>
+
 </div>
