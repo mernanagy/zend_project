@@ -27,11 +27,9 @@
           <actionMethod actionName="editcity"/>
           <actionMethod actionName="editcountry"/>
           <actionMethod actionName="deletecountry"/>
-
           <actionMethod actionName="login"/>
           <actionMethod actionName="home"/>
           <actionMethod actionName="logout"/>
-
           <actionMethod actionName="deletecity"/>
           <actionMethod actionName="addlocation"/>
           <actionMethod actionName="editlocation"/>
@@ -40,7 +38,8 @@
           <actionMethod actionName="deletehotel"/>
           <actionMethod actionName="allusers"/>
           <actionMethod actionName="blockuser"/>
-
+          <actionMethod actionName="deleteuser"/>
+          <actionMethod actionName="usertoadmin"/>
         </controllerFile>
         <controllerFile controllerName="City">
           <actionMethod actionName="index"/>
@@ -63,13 +62,10 @@
       <formsDirectory>
         <formFile formName="Addcountry"/>
         <formFile formName="Addcity"/>
-
         <formFile formName="Login"/>
         <formFile formName="Home"/>
-
         <formFile formName="Addlocation"/>
         <formFile formName="Addhotel"/>
-
       </formsDirectory>
       <layoutsDirectory>
         <layoutScriptsDirectory>
@@ -160,7 +156,6 @@
           <viewControllerScriptsDirectory forControllerName="Admin">
             <viewScriptFile forActionName="logout"/>
           </viewControllerScriptsDirectory>
-
           <viewControllerScriptsDirectory forControllerName="Admin">
             <viewScriptFile forActionName="deletecity"/>
           </viewControllerScriptsDirectory>
@@ -190,7 +185,6 @@
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Country">
             <viewScriptFile forActionName="listCities"/>
->>>>>>> 71fc448d89b589aa4759790854c5744ab70ed081
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="User">
             <viewScriptFile forActionName="index"/>
@@ -206,6 +200,12 @@
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Admin">
             <viewScriptFile forActionName="blockuser"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Admin">
+            <viewScriptFile forActionName="deleteuser"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Admin">
+            <viewScriptFile forActionName="usertoadmin"/>
           </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewHelpersDirectory/>

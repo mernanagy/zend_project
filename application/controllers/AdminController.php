@@ -296,7 +296,6 @@ class AdminController extends Zend_Controller_Action
 
     }
 
-
     public function loginAction()
     {
         // action body
@@ -354,7 +353,6 @@ class AdminController extends Zend_Controller_Action
 
     }
 
-
     public function deletecityAction()
     {
         // action body
@@ -401,4 +399,28 @@ class AdminController extends Zend_Controller_Action
         $this->redirect('/admin/allusers');
     }
 
+    public function deleteuserAction()
+    {
+        // action body
+        $user_id = $this->_request->getParam('uid');
+        $user_obj = new Application_Model_User();
+        $user_obj->deleteuser($user_id);
+        $this->redirect('/admin/allusers');
+
+    }
+
+    public function usertoadminAction()
+    {
+        // action body
+        $user_obj = new Application_Model_User();
+        $user_id = $this->_request->getParam('uid');
+        $user_obj->usertoadmin($user_id);
+        $this->redirect('/admin/allusers');
+    }
+
+
 }
+
+
+
+
