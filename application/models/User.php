@@ -32,11 +32,23 @@ class Application_Model_User extends Zend_Db_Table_Abstract
     {
         $this->delete("id=$uid");
     }
+
     function usertoadmin($uid)
     {
         $admin['is_admin']=1;
         $this->update($admin, "id=$uid");
     }
+
+    function getPostByUserId($uid)
+    {
+        $userrow_object=$this->find($uid)->current();
+
+        //return a row set of objects
+        $posts=$userrow_object->findDependentRowset('Application_Model_UserExperience');
+
+        return $posts;
+    }
+
 
 
 }

@@ -38,10 +38,8 @@
           <actionMethod actionName="deletehotel"/>
           <actionMethod actionName="allusers"/>
           <actionMethod actionName="blockuser"/>
-
           <actionMethod actionName="deleteuser"/>
           <actionMethod actionName="usertoadmin"/>
-
         </controllerFile>
         <controllerFile controllerName="City">
           <actionMethod actionName="index"/>
@@ -63,6 +61,8 @@
           <actionMethod actionName="hotel"/>
           <actionMethod actionName="car"/>
           <actionMethod actionName="updateprofile"/>
+          <actionMethod actionName="addpost"/>
+          <actionMethod actionName="editpost"/>
         </controllerFile>
       </controllersDirectory>
       <formsDirectory>
@@ -72,6 +72,7 @@
         <formFile formName="Home"/>
         <formFile formName="Addlocation"/>
         <formFile formName="Addhotel"/>
+        <formFile formName="Post"/>
       </formsDirectory>
       <layoutsDirectory>
         <layoutScriptsDirectory>
@@ -207,14 +208,12 @@
           <viewControllerScriptsDirectory forControllerName="Admin">
             <viewScriptFile forActionName="blockuser"/>
           </viewControllerScriptsDirectory>
-
           <viewControllerScriptsDirectory forControllerName="Admin">
             <viewScriptFile forActionName="deleteuser"/>
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Admin">
             <viewScriptFile forActionName="usertoadmin"/>
           </viewControllerScriptsDirectory>
-
           <viewControllerScriptsDirectory forControllerName="User">
             <viewScriptFile forActionName="posts"/>
           </viewControllerScriptsDirectory>
@@ -226,6 +225,12 @@
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="User">
             <viewScriptFile forActionName="updateprofile"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="User">
+            <viewScriptFile forActionName="addpost"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="User">
+            <viewScriptFile forActionName="editpost"/>
           </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewHelpersDirectory/>

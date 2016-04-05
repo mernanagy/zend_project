@@ -72,6 +72,17 @@ class UserController extends Zend_Controller_Action
     public function postsAction()
     {
         // action body
+
+        $user_obj = new Application_Model_User();
+        $user_id = $this->_request->getParam('user_id');
+        $postByUserId = $user_obj->getPostByUserId($user_id);
+        foreach ($postByUserId as $key=>$value) {
+            $posts[$key]['id'] = $value->id;
+            $posts[$key]['title'] = $value->title;
+            $posts[$key]['content'] = $value->content;
+        }
+        $this->view->user_id=$user_id;
+        $this->view->postByUserId=$posts;
     }
 
     public function hotelAction()
@@ -89,8 +100,86 @@ class UserController extends Zend_Controller_Action
         // action body
     }
 
+    public function addpostAction()
+    {
+        // action body
+        $addpost_form=new Application_Form_Post();
+        $addpost_form->image_path->setRequired();
+        //$addpost_form->removeElement("city_id");
+
+        $post_obj=new Application_Model_UserExperience();
+        $this->view->addpost_form=$addpost_form;
+
+        $request=$this->getRequest();
+
+        if($request->isPost())
+        {
+            if($addpost_form->isValid($request->getPost()))
+            {
+                $upload = new Zend_File_Transfer_Adapter_Http();
+                //$upload->addFilter('Rename',"/var/www/html/zend_project/public/images/cites/".$_POST['name'].".jpeg");
+                $upload->addFilter('Rename',
+                    array('target' => "/var/www/html/zend_project/public/images/posts/" . $_POST['title'] . ".jpeg",
+                        'overwrite' => true));
+                $upload->receive();
+                // $path="/images/countries/".$_POST['name'].".jpeg";
+                $_POST['image_path'] = "/images/posts/" . $_POST['title'] . ".jpeg";
+                $user_id = $this->_request->getParam('user_id');
+                $post_obj->insertNewPost($_POST,$user_id );
+                $this->redirect('/user/posts/user_id/'.$user_id);
+            }
+        }
+
+
+    }
+
+    public function editpostAction()
+    {
+        // action body
+        $editpost_form = new Application_Form_Post();
+        $post_obj = new Application_Model_UserExperience();
+        $editpost_form->removeElement("city_id");
+
+        $post_id = $this->_request->getParam('pid');
+        $user_id=$this->_request->getParam('user_id');
+
+        $postById = $post_obj->getPostById($post_id);
+
+        $editpost_form->populate($postById[0]);
+        $this->view->editpost_form = $editpost_form;
+
+        $request = $this->getRequest();
+        if ($request->isPost()) {
+            if ($editpost_form->isValid($request->getPost())) {
+                $upload = new Zend_File_Transfer_Adapter_Http();
+                $name = $_FILES['image_path']['name'];
+
+                if ($name != "") {
+                    $upload->addFilter('Rename',
+                        array('target' => "/var/www/html/zend_project/public/images/posts/" . $name,
+                            'overwrite' => true));
+
+                    $_POST['image_path'] = "/images/posts/" . $name;
+                } else {
+                    $_POST['image_path'] = "";
+                }
+
+                $upload->receive();
+
+                $post_obj->editPost($_POST);
+                $this->redirect('/user/posts/user_id/'.$user_id);
+            }
+        }
+
+
+    }
+
 
 }
+
+
+
+
 
 
 
