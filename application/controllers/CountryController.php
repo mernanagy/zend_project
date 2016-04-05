@@ -20,6 +20,10 @@ class CountryController extends Zend_Controller_Action
         $city_model=new Application_Model_City();
         
         $this->view->allcities=$city_model->get_cities_by_country_id($id);
+        $country_model=new Application_Model_Country();
+        $this->view->country=$country_model->getCountryById($id);
+
+
     }
 
 

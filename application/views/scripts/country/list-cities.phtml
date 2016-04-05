@@ -1,9 +1,31 @@
 <?php
+
+foreach ($this->country as $key => $value) {
+	# code...
+	echo "<img src='".$value['image_path']."' style='width:1600px; height:450px; alt='slider image 1'>";
+	
+}
+echo '<div id="products" class="content-section">';
+        echo '<div class="container">';
+            echo'<div class="row">';
+                echo '<div class="col-md-12 text-center">';
+                    echo '<h1 class="section-title">Cities</h1>';
+                echo '</div> <!-- /.col-md-12 -->';
+            echo '</div> <!-- /.row -->';
+echo "<center><table>";
+echo "<br><br>";
+ 
  foreach($this->allcities as $key => $value)
  {
-   echo"<br><br><br>";
- echo "<h1>".$value['name']."</h1>";
+ 	
+   //echo"<br><br><br>";
+   echo "<tr><td><h3>".$value['name']."</h3></td>";
+   echo "<td><img src='".$value['imag_path']."'style='width:100px; height:100px;'></td></tr>";
+ //echo "<h1>".$value['name']."</h1>";
+   echo "</tr>";
  
  }
+ 
+ echo "</center></table></div></div>";
 
 ?>
