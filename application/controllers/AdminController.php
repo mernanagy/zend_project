@@ -303,7 +303,7 @@ class AdminController extends Zend_Controller_Action
 
     }
 
-<<<<<<< HEAD
+
     public function loginAction()
     {
         // action body
@@ -358,9 +358,9 @@ class AdminController extends Zend_Controller_Action
         Zend_Session::namespaceUnset('Zend_Auth');
         $this->redirect("/admin/login");
 
+    }
 
 
-=======
     public function deletecityAction()
     {
         // action body
@@ -386,7 +386,7 @@ class AdminController extends Zend_Controller_Action
         $hotel_obj=new Application_Model_Hotels();
         $hotel_obj->deletehotel($hotel_id);
         $this->redirect('/admin/allhotels');
->>>>>>> 71fc448d89b589aa4759790854c5744ab70ed081
+
     }
 
 
@@ -418,8 +418,6 @@ class AdminController extends Zend_Controller_Action
 
 
 
-<<<<<<< HEAD
-=======
 
 
 
@@ -428,4 +426,4 @@ class AdminController extends Zend_Controller_Action
 
 
 
->>>>>>> 71fc448d89b589aa4759790854c5744ab70ed081
+
