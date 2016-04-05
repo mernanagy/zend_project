@@ -11,6 +11,7 @@ class IndexController extends Zend_Controller_Action
     public function indexAction()
     {
         // action body
+        $this->redirect('/index/list-countary-a-city');
     }
 
     public function listCountaryACityAction()

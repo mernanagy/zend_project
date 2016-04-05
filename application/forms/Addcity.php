@@ -9,7 +9,7 @@ class Application_Form_Addcity extends Zend_Form
         $this->setMethod('POST');
         $this->setAttribs(array(
             'class'=>'form-horizontal',
-            'id'=>'newcountry'
+            'id'=>'newcity'
         ));
         $id=new Zend_Form_Element_Hidden('id');
         $name=new Zend_Form_Element_Text('name');
@@ -60,7 +60,7 @@ class Application_Form_Addcity extends Zend_Form
         $country_id->setLabel('Select Country');
         $country_id->setAttrib('class','form-contol');
         $country_obj=new Application_Model_Country();
-        $all_countries=$country_obj->list_All_Countries();
+        $all_countries=$country_obj->listCountries();
         foreach($all_countries as $key=>$value)
         {
             $country_id->addMultiOption($value['id'],$value['name']);

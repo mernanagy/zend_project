@@ -1,8 +1,7 @@
-<br /><br />
+<br /><br /><br />
 <div id="view-content">
 
-
-	<h3 align="center" > Hotels </h3>
+	<h3 align="center" > Hotels <a href='addhotel'>Add Hotel </a></h3>
 	<table class='table'>
 		<thead>
 		<tr>
@@ -15,8 +14,8 @@
 			echo "<tr>".
 				"<td>" . $value['id'] . "</td>" .
 				"<td>" . $value['name'] . "</td>" .
-				"<td><a href='edithotel/cid/".$value['id']."'>Edit</a></td>".
-				"<td><a href='deletehotel/cid/".$value['id']."'>Delete</a></td>".
+				"<td><a class='btn btn-success' href='edithotel/hid/".$value['id']."'>Edit</a></td>".
+				"<td><a class='btn btn-danger' href='deletehotel/hid/".$value['id']."'>Delete</a></td>".
 				"</tr>";
 		}
 		?>

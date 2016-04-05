@@ -84,7 +84,7 @@ class AdminController extends Zend_Controller_Action
     {
         // action body
         $addcity_form=new Application_Form_Addcity();
-
+        $addcity_form->imag_path->setRequired();
 
 
         $city_obj=new Application_Model_City();
@@ -110,10 +110,86 @@ class AdminController extends Zend_Controller_Action
         }
     }
 
+    public function addlocationAction()
+    {
+        // action body
+        $addlocation_form=new Application_Form_Addlocation();
+        $addlocation_form->imag_path->setRequired();
+
+
+        $location_obj=new Application_Model_Locations();
+        $this->view->addlocation_form=$addlocation_form;
+        $request=$this->getRequest();
+        if($request->isPost())
+        {
+            if($addlocation_form->isValid($request->getPost()))
+            {
+
+                $upload = new Zend_File_Transfer_Adapter_Http();
+                $upload->addFilter('Rename',"/var/www/html/zend_project/public/images/location/".$_POST['name'].".jpeg");
+                $upload->receive();
+                $_POST['imag_path']="/images/location/".$_POST['name'].".jpeg";
+                $location_obj->insertNewLocation($_POST);
+                $this->redirect('/admin/alllocations');
+            }
+        }
+
+
+    }
+
+    public function addhotelAction()
+    {
+        // action body
+        $addhotel_form=new Application_Form_Addhotel();
+        $hotel_obj=new Application_Model_Hotels();
+        $this->view->addhotel_form=$addhotel_form;
+        $request=$this->getRequest();
+        if($request->isPost())
+        {
+            if($addhotel_form->isValid($request->getPost()))
+            {
+                $hotel_obj->insertNewHotel($_POST);
+                $this->redirect('/admin/allhotels');
+            }
+        }
+
+    }
+
     public function editcityAction()
     {
         // action body
-        
+        $editcity_form=new Application_Form_Addcity();
+        $city_obj=new Application_Model_City();
+        $city_id=$this->_request->getParam('cid');
+        $cityById=$city_obj->get_city_by_id_Array($city_id);
+        $editcity_form->populate($cityById[0]);
+        $this->view->editcity_form=$editcity_form;
+
+        $request=$this->getRequest();
+        if($request->isPost())
+        {
+            if($editcity_form->isValid($request->getPost()))
+            {
+                $upload=new Zend_File_Transfer_Adapter_Http();
+                $name=$_FILES['imag_path']['name'];
+
+                if ($name != "")
+                {
+                    $upload->addFilter('Rename',
+                        array('target' => "/var/www/html/zend_project/public/images/cites/" . $name ,
+                            'overwrite' => true));
+                    $_POST['imag_path']="/images/cites/".$name;
+                }
+                else{
+                    $_POST['imag_path']="";
+
+                }
+                $upload->receive();
+
+                $city_obj->editcity($_POST);
+                $this->redirect('/admin/allcities');
+            }
+        }
 
     }
 
@@ -149,15 +225,71 @@ class AdminController extends Zend_Controller_Action
 
                 $upload->receive();
 
-
-
-
-
-
                 $country_obj->editCountry($_POST);
                 $this->redirect('/admin/allcountries');
             }
         }
+    }
+
+    public function editlocationAction()
+    {
+        // action body
+        $editlocation_form=new Application_Form_Addlocation();
+        $location_obj=new Application_Model_Locations();
+        $location_id=$this->_request->getParam('lid');
+        $locationById=$location_obj->getLocationById($location_id);
+        $editlocation_form->populate($locationById[0]);
+        $this->view->editlocation_form=$editlocation_form;
+
+        $request=$this->getRequest();
+        if($request->isPost())
+        {
+            if($editlocation_form->isValid($request->getPost()))
+            {
+                $upload = new Zend_File_Transfer_Adapter_Http();
+                $name=$_FILES['imag_path']['name'];
+
+                if ($name != "") {
+                    $upload->addFilter('Rename',
+                        array('target' => "/var/www/html/zend_project/public/images/location/" . $name ,
+                            'overwrite' => true));
+
+                    $_POST['imag_path'] = "/images/location/" . $name;
+                }
+
+                else{
+                    $_POST['imag_path']="";
+                }
+
+                $upload->receive();
+
+                $location_obj->editLocation($_POST);
+                $this->redirect('/admin/alllocations');
+            }
+        }
+
+    }
+
+    public function edithotelAction()
+    {
+        // action body
+        $edithotel_form=new Application_Form_Addhotel();
+        $hotel_obj=new Application_Model_Hotels();
+        $hotel_id=$this->_request->getParam('hid');
+        $hotelById=$hotel_obj->getHotelById($hotel_id);
+        $edithotel_form->populate($hotelById[0]);
+        $this->view->edithotel_form=$edithotel_form;
+
+        $request=$this->getRequest();
+        if($request->isPost())
+        {
+            if($edithotel_form->isValid($request->getPost()))
+            {
+                $hotel_obj->edithotel($_POST);
+                $this->redirect('/admin/allhotels');
+            }
+        }
+
     }
 
     public function deletecountryAction()
@@ -171,6 +303,7 @@ class AdminController extends Zend_Controller_Action
 
     }
 
+<<<<<<< HEAD
     public function loginAction()
     {
         // action body
@@ -227,6 +360,33 @@ class AdminController extends Zend_Controller_Action
 
 
 
+=======
+    public function deletecityAction()
+    {
+        // action body
+        $city_id=$this->_request->getParam('cid');
+        $city_obj=new Application_Model_City();
+        $city_obj->deletecity($city_id);
+        $this->redirect('/admin/allcities');
+    }
+
+    public function deletelocationAction()
+    {
+        // action body
+        $location_id=$this->_request->getParam('lid');
+        $location_obj=new Application_Model_Locations();
+        $location_obj->deletelocation($location_id);
+        $this->redirect('/admin/alllocations');
+    }
+
+    public function deletehotelAction()
+    {
+        // action body
+        $hotel_id=$this->_request->getParam('hid');
+        $hotel_obj=new Application_Model_Hotels();
+        $hotel_obj->deletehotel($hotel_id);
+        $this->redirect('/admin/allhotels');
+>>>>>>> 71fc448d89b589aa4759790854c5744ab70ed081
     }
 
 
@@ -258,3 +418,14 @@ class AdminController extends Zend_Controller_Action
 
 
 
+<<<<<<< HEAD
+=======
+
+
+
+
+
+
+
+
+>>>>>>> 71fc448d89b589aa4759790854c5744ab70ed081

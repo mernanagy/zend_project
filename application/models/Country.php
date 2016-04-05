@@ -13,8 +13,6 @@ class Application_Model_Country extends Zend_Db_Table_Abstract
     	return $this->fetchAll()->toArray();
     }
 
-
-
     function list_All_Countries()
     {
         return $this->fetchAll(null,"rate DESC",6)->toArray();
@@ -49,6 +47,7 @@ class Application_Model_Country extends Zend_Db_Table_Abstract
 
 
     }
+
     function deletecountry($country_id)
     {
         $this->delete("id=$country_id");
