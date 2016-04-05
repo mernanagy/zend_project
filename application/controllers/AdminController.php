@@ -16,12 +16,7 @@ class AdminController extends Zend_Controller_Action
 //}
 
             }
-        }
-
-
-
-
-
+    }
 
     public function indexAction()
     {
@@ -206,7 +201,7 @@ class AdminController extends Zend_Controller_Action
                     return $this->redirect('/admin/home');
                 }} else {
                     $this->view->error_message = "Invalid Emai or Password!";
-                    $this->_helper->layout->disableLayout();
+                    //$this->_helper->layout->disableLayout();
                 }
 
 
@@ -214,18 +209,30 @@ class AdminController extends Zend_Controller_Action
 
         }
         $this->view->login_form = $login_form;
-        $this->_helper->layout->disableLayout();
+        //$this->_helper->layout->disableLayout();
     }
 
     public function homeAction()
     {
         // action body
-        $this->_helper->layout->disableLayout();
+        //$this->_helper->layout->disableLayout();
         $this->view->home ;
+    }
+
+    public function logoutAction()
+    {
+        // action body
+        Zend_Session::namespaceUnset('Zend_Auth');
+        $this->redirect("/admin/login");
+
+
+
     }
 
 
 }
+
+
 
 
 

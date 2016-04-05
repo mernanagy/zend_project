@@ -29,6 +29,7 @@
           <actionMethod actionName="deletecountry"/>
           <actionMethod actionName="login"/>
           <actionMethod actionName="home"/>
+          <actionMethod actionName="logout"/>
         </controllerFile>
         <controllerFile controllerName="City">
           <actionMethod actionName="index"/>
@@ -130,6 +131,9 @@
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Admin">
             <viewScriptFile forActionName="home"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Admin">
+            <viewScriptFile forActionName="logout"/>
           </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewHelpersDirectory/>
