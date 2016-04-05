@@ -20,7 +20,7 @@ class ArticleController extends Zend_Controller_Action
 
         $article = $article_obj->get_post_by_id($article_id);
 
-
+        $this->view->article_id = $article_id;
         $this->view->article = $article;
 
 

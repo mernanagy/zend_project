@@ -322,7 +322,7 @@ class AdminController extends Zend_Controller_Action
 //}
 
                         $storage->write($authAdapter->getResultRowObject(array('id',
-                            'email')));
+                            'name','imag_path','is_admin')));
                         return $this->redirect('/admin/home');
                     }
                 } else {
