@@ -88,7 +88,18 @@ echo '<h3>'. $this->paginator. '</h3>';
 
 	}
 
+<?php
+if (isset($_SESSION['Zend_Auth']['storage'])) {
 
+$user_id = $_SESSION['Zend_Auth']['storage']->id;
+?>
+	var car = $('#car');
+	var hotel =$('#hotel');
+car.attr('href','/user/car/user_id/<?php echo $user_id;?>/city_id/<?php echo $this->city_data->id;?>');
+	car.show();
 
+	hotel.attr('href','/user/hotel/user_id/<?php echo $user_id;?>/city_id/<?php echo $this->city_data->id;?>');
+	hotel.show();
+<?php }?>
 </script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC8qj-3E6nRcvPyJP9DwpAZ3Xr_iSq_ot8&callback=initMap" async defer></script>
