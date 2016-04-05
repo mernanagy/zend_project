@@ -46,6 +46,11 @@
           <actionMethod actionName="index"/>
           <actionMethod actionName="listCities"/>
         </controllerFile>
+        <controllerFile controllerName="User">
+          <actionMethod actionName="index"/>
+          <actionMethod actionName="login"/>
+          <actionMethod actionName="signout"/>
+        </controllerFile>
       </controllersDirectory>
       <formsDirectory>
         <formFile formName="Addcountry"/>
@@ -133,7 +138,6 @@
           <viewControllerScriptsDirectory forControllerName="Article">
             <viewScriptFile forActionName="show"/>
           </viewControllerScriptsDirectory>
-
           <viewControllerScriptsDirectory forControllerName="Admin">
             <viewScriptFile forActionName="deletecity"/>
           </viewControllerScriptsDirectory>
@@ -163,6 +167,15 @@
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Country">
             <viewScriptFile forActionName="listCities"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="User">
+            <viewScriptFile forActionName="index"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="User">
+            <viewScriptFile forActionName="login"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="User">
+            <viewScriptFile forActionName="signout"/>
           </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewHelpersDirectory/>

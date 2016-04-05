@@ -54,10 +54,30 @@
                     </div>
 
                 </li>
+
+                <?php
+                $auth = Zend_Auth::getInstance();
+                $storage = $auth->getStorage();
+                $sessionRead = $storage->read();
+
+                if (!empty($sessionRead)){
+
+                    $name = $sessionRead->name;
+                    $id = $sessionRead->id;
+                    ?>
+                    <li class="navbar-brand">Welcome <?php echo $name;?></li>
+                    <li> <a href="/user/signout"  class="btn btn-default" >Sign Out</a> </li>
+
+
+                    <?php
+
+                }
+                else{
+                ?>
                     <!-- changeable -->
                 <li> <button id="sign-in"  class="btn btn-default" >Sign In</button> </li> &nbsp; &nbsp; &nbsp;
                 <li><a  href="" class="btn btn-default" >Sign Up</a></li>
-
+                <?php } ?>
 
             </ul>
 
@@ -73,7 +93,8 @@
         <div class="modal-content">
             <div class="modal-header" style="padding:35px 50px;">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4><span class="glyphicon glyphicon-lock"></span> Login</h4>
+                <h4 style="display: inline"><span class="glyphicon glyphicon-lock"></span> Login &nbsp; &nbsp; &nbsp;</h4>
+                <h5 style="display: inline; color: red;" id="login_message">  </h5>
             </div>
             <div class="modal-body" style="padding:40px 50px;">
 
@@ -137,5 +158,40 @@
         $("#sign-in").click(function(){
             $("#myModal").modal();
         });
+
+
+
+        $('#btn-signin').on('click',function () {
+            var user_name =$('#username').val();
+            var password = $('#password').val();
+            var login_message = $('#login_message');
+            login_message.hide();
+            $.ajax({
+                url:'/user/login',
+                type:'post',
+                data:{'user_name':user_name,'password':password},
+                success:function (data) {
+
+                    var parsed = JSON.parse(data);
+
+                    if (parsed.type == "failed")
+                    {
+
+                        login_message.fadeOut('').fadeIn().text(parsed.message);
+                    }
+                    else{
+                        //redirecting user if he is valid
+                        window.location= parsed.message;
+                    }
+                },
+                error:function(error){
+                    for(var key in error) {
+                        var value = error[key];
+                        console.log(value);
+                    }
+                }
+            });
+        });
+
     });
 </script>
