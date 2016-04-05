@@ -69,8 +69,36 @@ class UserController extends Zend_Controller_Action
         $this->redirect('/index/list-countary-a-city');
     }
 
+    public function postsAction()
+    {
+        // action body
+    }
+
+    public function hotelAction()
+    {
+        // action body
+    }
+
+    public function carAction()
+    {
+        // action body
+    }
+
+    public function updateprofileAction()
+    {
+        // action body
+    }
+
 
 }
+
+
+
+
+
+
+
+
 
 
 
