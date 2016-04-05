@@ -26,10 +26,10 @@ class UserController extends Zend_Controller_Action
 
         $db = Zend_Db_Table::getDefaultAdapter();
 
-       $authAdapter = new Zend_Auth_Adapter_DbTable($db,'user','name','password');
+       $authAdapter = new Zend_Auth_Adapter_DbTable($db,'user','email','password');
 
-        if (!empty($_POST['user_name'])) {
-            $authAdapter->setIdentity($_POST['user_name']);
+        if (!empty($_POST['user_email'])) {
+            $authAdapter->setIdentity($_POST['user_email']);
             $authAdapter->setCredential($_POST['password']);
 
             $result = $authAdapter->authenticate();
@@ -44,7 +44,7 @@ class UserController extends Zend_Controller_Action
                     $auth = Zend_Auth::getInstance();
                     $storage= $auth->getStorage();
 
-                    $storage->write($authAdapter->getResultRowObject(array('id', 'name')));
+                    $storage->write($authAdapter->getResultRowObject(array('id', 'name','imag_path')));
 
                     $message['type'] = 'success';
                     $message['message'] = 'http://travel.com/index/list-countary-a-city';

@@ -12,6 +12,13 @@
     <script src="/resources/js/vendor/jquery-1.10.1.min.js"></script>
     <script type="text/javascript" src="/resources/js/jquery-comments.js"></script>
     <script src="/resources/js/vendor/modernizr-2.6.2.min.js"></script>
+    <style>
+        .user_image {
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+        }
+    </style>
 </head>
 
 <!-- Header Content-->
@@ -64,7 +71,10 @@
 
                     $name = $sessionRead->name;
                     $id = $sessionRead->id;
+                    $image_path = $sessionRead->imag_path;
                     ?>
+                    <li><img class="user_image" src="<?php echo $image_path;?>"></li>
+
                     <li class="navbar-brand">Welcome <?php echo $name;?></li>
                     <li><a class="btn btn-success" style="color: white;" href="/user/posts/user_id/<?php echo $id;?>">My Posts</a></li>
                     <li><a></a></li>
@@ -110,7 +120,7 @@
 
                     <div class="form-group">
                         <label for="username"><span class="glyphicon glyphicon-user"></span> User Email</label>
-                        <input type="text" class="form-control" id="username" placeholder="Enter email" required=" "><p id="ErrorEmail" hidden="true" style="color:red;">The User Email Not True</p>
+                        <input type="text" class="form-control" id="useremail" placeholder="Enter email" required=" "><p id="ErrorEmail" hidden="true" style="color:red;">The User Email Not True</p>
                     </div>
                     <div class="form-group">
                         <label for="password"><span class="glyphicon glyphicon-eye-open"></span> Password</label>
@@ -172,14 +182,14 @@
 
 
         $('#btn-signin').on('click',function () {
-            var user_name =$('#username').val();
+            var user_email =$('#useremail').val();
             var password = $('#password').val();
             var login_message = $('#login_message');
             login_message.hide();
             $.ajax({
                 url:'/user/login',
                 type:'post',
-                data:{'user_name':user_name,'password':password},
+                data:{'user_email':user_email,'password':password},
                 success:function (data) {
 
                     var parsed = JSON.parse(data);
