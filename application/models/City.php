@@ -24,11 +24,13 @@ class Application_Model_City extends Zend_Db_Table_Abstract
         
 
     }
+
     function list_All_Cities()
     {
 
         return $this->fetchAll()->toArray();
     }
+
     function insertNewCity($citydata)
     {
         $row=$this->createRow();
@@ -42,6 +44,28 @@ class Application_Model_City extends Zend_Db_Table_Abstract
         $row->save();
     }
 
+    function editcity($citydata){
+
+        $edit_city['name'] = $citydata['name'];
+        $edit_city['rate'] = $citydata['rate'];
+        if ($citydata['imag_path'] != "")
+        {
+            $edit_city['imag_path'] = $citydata['imag_path'];
+        }
+
+
+        $edit_city['description']=$citydata['description'];
+        $edit_city['latitude']=$citydata['latitude'];
+        $edit_city['longitude']=$citydata['longitude'];
+        $edit_city['country_id']=$citydata['country_id'];
+        $cid = $citydata['id'];
+        $this->update($edit_city, "id=$cid");
+    }
+
+    function deletecity($city_id){
+
+        $this->delete("id=$city_id");
+    }
 
     public function get_city_experiences ($city_id)
     {
@@ -55,6 +79,11 @@ class Application_Model_City extends Zend_Db_Table_Abstract
     {
         return $this->find("$city_id")->current();
     }
+    // 3alashan elpopulate lazem ta5od array
+    public function get_city_by_id_Array ($city_id)
+    {
+        return $this->find($city_id)->toArray();
+    }
 
     public function get_city_locations ($city_id)
     {
@@ -62,11 +91,11 @@ class Application_Model_City extends Zend_Db_Table_Abstract
         return $city->findDependentRowset('Application_Model_Locations');
 
     }
+
     public function get_cities_by_country_id($country_id)
     {
     
        return $this->fetchAll("country_id=$country_id",null,null)->toArray();
     }
-    
 }
 

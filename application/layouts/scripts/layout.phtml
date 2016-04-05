@@ -1,6 +1,5 @@
 <head>
- <link href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet">
-    <meta charset=utf-8>
+     <meta charset=utf-8>
     <link rel="stylesheet" href="/resources/css/bootstrap.min.css">
     <link rel="stylesheet" href="/resources/css/normalize.min.css">
     <link rel="stylesheet" href="/resources/css/font-awesome.min.css">
@@ -16,44 +15,114 @@
 </head>
 
 <!-- Header Content-->
- <div id="front">
-        <div class="site-header">
-            <div class="container">
-                <div class="row">
 
-                    <div class="col-md-7 col-sm-6 col-xs-6">
-                        <a href="#" class="toggle-menu"><i class="fa fa-bars"></i></a>
-                        <div class="main-menu">
-                            <ul>
-                                <li class="dropdown" id="tt-blog">
-        <a href="#!" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-target="#">Countries <span class="caret"></span><a>
-        <ul class="dropdown-menu" role="menu">
-          <li><a href="#!">Egypt</a></li>
-          <li><a href="#!">Korea</a></li>
-        </ul>
-</li>
-                                <li><button class="btn btn-default" >SignUp</button></li>
-                                <li><button class="btn btn-default">SignIn</button></li>
-                                <li><a href="http://www.facebook.com">Hello</a></li>
+<nav class="navbar navbar-fixed-top navbar-inverse">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Home</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Countries <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Action</a></li>
+                        <li><a href="#">Another action</a></li>
+                        <li><a href="#">Something else here</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="#">Separated link</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="#">One more separated link</a></li>
+                    </ul>
+                </li>
+
+                <li> <div class="navbar-form navbar-left" role="search">
+                        <div class="form-group">
+                            <input  type="text" class="form-control" placeholder="Search">
+                        </div>
+
+                    </div>
+
+                </li>
+
+                <?php
+                $auth = Zend_Auth::getInstance();
+                $storage = $auth->getStorage();
+                $sessionRead = $storage->read();
+
+                if (!empty($sessionRead)){
+
+                    $name = $sessionRead->name;
+                    $id = $sessionRead->id;
+                    ?>
+                    <li class="navbar-brand">Welcome <?php echo $name;?></li>
+                    <li> <a href="/user/signout"  class="btn btn-default" >Sign Out</a> </li>
 
 
+                    <?php
 
 
+                }
+                else{
+                ?>
+                    <!-- changeable -->
+                <li> <button id="sign-in"  class="btn btn-default" >Sign In</button> </li> &nbsp; &nbsp; &nbsp;
+                <li><a  href="" class="btn btn-default" >Sign Up</a></li>
+                <?php } ?>
+
+            </ul>
 
 
-                            </ul>
-                        </div> <!-- /.main-menu -->
-                    </div> <!-- /.col-md-7 -->
-                </div> <!-- /.row -->
-                
-            </div> <!-- /.container -->
-        </div> <!-- /.site-header -->
-    </div> <!-- /#front -->
+        </div>
+    </div>
+</nav>
 
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header" style="padding:35px 50px;">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 style="display: inline"><span class="glyphicon glyphicon-lock"></span> Login &nbsp; &nbsp; &nbsp;</h4>
+                <h5 style="display: inline; color: red;" id="login_message">  </h5>
+            </div>
+            <div class="modal-body" style="padding:40px 50px;">
+
+                    <div class="form-group">
+                        <label for="username"><span class="glyphicon glyphicon-user"></span> User Email</label>
+                        <input type="text" class="form-control" id="username" placeholder="Enter email" required=" "><p id="ErrorEmail" hidden="true" style="color:red;">The User Email Not True</p>
+                    </div>
+                    <div class="form-group">
+                        <label for="password"><span class="glyphicon glyphicon-eye-open"></span> Password</label>
+                        <input type="password" class="form-control" id="password" placeholder="Enter password" required=" "><p id="ErrorPassword" hidden="true" style="color:red;">The Password Not True</p>
+                    </div>
+
+                    <button  class="btn btn-success btn-block" id="btn-signin" ><span class="glyphicon glyphicon-off" ></span> Login</button>
+
+            </div>
+
+
+        </div>
+
+    </div>
+</div>
 
 <!--End Of Header Content -->
- <br><br>
+
+
 <?php echo $this->layout()->content; ?>
+
 <!-- Foter Content-->
 <div class="site-footer">
         <div class="container">
@@ -85,3 +154,45 @@
     <script src="/resources/js/bootstrap.js"></script>
     <script src="/resources/js/plugins.js"></script>
     <script src="/resources/js/main.js"></script>
+<script>
+    $(document).ready(function(){
+        $("#sign-in").click(function(){
+            $("#myModal").modal();
+        });
+
+
+
+        $('#btn-signin').on('click',function () {
+            var user_name =$('#username').val();
+            var password = $('#password').val();
+            var login_message = $('#login_message');
+            login_message.hide();
+            $.ajax({
+                url:'/user/login',
+                type:'post',
+                data:{'user_name':user_name,'password':password},
+                success:function (data) {
+
+                    var parsed = JSON.parse(data);
+
+                    if (parsed.type == "failed")
+                    {
+
+                        login_message.fadeOut('').fadeIn().text(parsed.message);
+                    }
+                    else{
+                        //redirecting user if he is valid
+                        window.location= parsed.message;
+                    }
+                },
+                error:function(error){
+                    for(var key in error) {
+                        var value = error[key];
+                        console.log(value);
+                    }
+                }
+            });
+        });
+
+    });
+</script>

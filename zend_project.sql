@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Apr 03, 2016 at 05:18 PM
+-- Generation Time: Apr 05, 2016 at 10:16 AM
 -- Server version: 5.5.47-0ubuntu0.14.04.1
 -- PHP Version: 5.5.9-1ubuntu4.14
 
@@ -48,12 +48,19 @@ CREATE TABLE IF NOT EXISTS `city` (
   `rate` int(11) NOT NULL,
   `imag_path` varchar(100) NOT NULL,
   `description` varchar(300) NOT NULL,
-  `latitude` int(11) NOT NULL,
-  `longitude` int(11) NOT NULL,
+  `latitude` double NOT NULL,
+  `longitude` double NOT NULL,
   `country_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `country_id` (`country_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=12 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=13 ;
+
+--
+-- Dumping data for table `city`
+--
+
+INSERT INTO `city` (`id`, `name`, `rate`, `imag_path`, `description`, `latitude`, `longitude`, `country_id`) VALUES
+(12, 'cairo', 5, '/images/cites/small_city.jpeg', 'any thing', 30.04439926147461, 31.235700607299805, 26);
 
 -- --------------------------------------------------------
 
@@ -69,7 +76,14 @@ CREATE TABLE IF NOT EXISTS `comment` (
   PRIMARY KEY (`id`),
   KEY `user_id` (`user_id`),
   KEY `user_posts_id` (`user_posts_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
+--
+-- Dumping data for table `comment`
+--
+
+INSERT INTO `comment` (`id`, `content`, `user_posts_id`, `user_id`) VALUES
+(1, 'A little Comment My Friend', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -83,7 +97,14 @@ CREATE TABLE IF NOT EXISTS `country` (
   `rate` int(11) NOT NULL,
   `image_path` varchar(100) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=26 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=27 ;
+
+--
+-- Dumping data for table `country`
+--
+
+INSERT INTO `country` (`id`, `name`, `rate`, `image_path`) VALUES
+(26, 'Cairo', 5, '/images/countries/1.jpg');
 
 -- --------------------------------------------------------
 
@@ -97,7 +118,7 @@ CREATE TABLE IF NOT EXISTS `hotels` (
   `city_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `city_id` (`city_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -129,7 +150,7 @@ CREATE TABLE IF NOT EXISTS `location` (
   `city_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `city_id` (`city_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -145,7 +166,14 @@ CREATE TABLE IF NOT EXISTS `user` (
   `is_active` int(11) NOT NULL DEFAULT '1',
   `is_admin` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
+--
+-- Dumping data for table `user`
+--
+
+INSERT INTO `user` (`id`, `name`, `password`, `imag_path`, `is_active`, `is_admin`) VALUES
+(1, 'ahmed', 'opensource', '/images/users/default.jpeg', 1, 0);
 
 -- --------------------------------------------------------
 
@@ -163,7 +191,14 @@ CREATE TABLE IF NOT EXISTS `user_posts` (
   PRIMARY KEY (`id`),
   KEY `city_id` (`city_id`),
   KEY `user_id` (`user_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
+--
+-- Dumping data for table `user_posts`
+--
+
+INSERT INTO `user_posts` (`id`, `title`, `content`, `image_path`, `city_id`, `user_id`) VALUES
+(1, 'Small_City Post_Title', 'this is a lot of wors to be in consederation my friend so please be patient ok .\r\n\r\n\r\n\r\nokksafjhajskhfoilk;andlvk;jffffffffffffffffasdff3rqwfasdf\r\n\r\n\r\nasdfasdfasdf', '/images/posts/3.jpg', 12, 1);
 
 --
 -- Constraints for dumped tables
@@ -185,8 +220,8 @@ ALTER TABLE `city`
 -- Constraints for table `comment`
 --
 ALTER TABLE `comment`
-  ADD CONSTRAINT `comment_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `comment_ibfk_1` FOREIGN KEY (`user_posts_id`) REFERENCES `user_posts` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `comment_ibfk_1` FOREIGN KEY (`user_posts_id`) REFERENCES `user_posts` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `comment_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `hotels`
@@ -210,8 +245,8 @@ ALTER TABLE `location`
 -- Constraints for table `user_posts`
 --
 ALTER TABLE `user_posts`
-  ADD CONSTRAINT `user_posts_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `user_posts_ibfk_1` FOREIGN KEY (`city_id`) REFERENCES `city` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `user_posts_ibfk_1` FOREIGN KEY (`city_id`) REFERENCES `city` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `user_posts_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
