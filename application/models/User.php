@@ -28,6 +28,16 @@ class Application_Model_User extends Zend_Db_Table_Abstract
         $this->update($unblockuser, "id=$uid");
     }
 
+    function deleteuser($uid)
+    {
+        $this->delete("id=$uid");
+    }
+    function usertoadmin($uid)
+    {
+        $admin['is_admin']=1;
+        $this->update($admin, "id=$uid");
+    }
+
 
 }
 
