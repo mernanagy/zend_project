@@ -74,7 +74,12 @@
         <formFile formName="Home"/>
         <formFile formName="Addlocation"/>
         <formFile formName="Addhotel"/>
+
+        <formFile formName="UserEdit"/>
+        <formFile formName="UserEdit"/>
+
         <formFile formName="Post"/>
+
       </formsDirectory>
       <layoutsDirectory>
         <layoutScriptsDirectory>
@@ -91,6 +96,8 @@
         <modelFile modelName="CarRental"/>
         <modelFile modelName="HotelReservation"/>
         <modelFile modelName="User"/>
+        <modelFile modelName="Updateuser"/>
+        <modelFile modelName="UpdateUsers"/>
       </modelsDirectory>
       <modulesDirectory enabled="false"/>
       <servicesDirectory enabled="false"/>
