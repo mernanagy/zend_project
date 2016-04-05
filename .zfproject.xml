@@ -36,7 +36,6 @@
           <actionMethod actionName="deletelocation"/>
           <actionMethod actionName="edithotel"/>
           <actionMethod actionName="deletehotel"/>
-
           <actionMethod actionName="allusers"/>
           <actionMethod actionName="blockuser"/>
           <actionMethod actionName="deleteuser"/>
@@ -65,6 +64,7 @@
           <actionMethod actionName="updateprofile"/>
           <actionMethod actionName="addpost"/>
           <actionMethod actionName="editpost"/>
+          <actionMethod actionName="deletepost"/>
         </controllerFile>
       </controllersDirectory>
       <formsDirectory>
@@ -204,11 +204,9 @@
           <viewControllerScriptsDirectory forControllerName="User">
             <viewScriptFile forActionName="signout"/>
           </viewControllerScriptsDirectory>
-
           <viewControllerScriptsDirectory forControllerName="Country">
             <viewScriptFile forActionName="listCountry"/>
           </viewControllerScriptsDirectory>
-
           <viewControllerScriptsDirectory forControllerName="Admin">
             <viewScriptFile forActionName="allusers"/>
           </viewControllerScriptsDirectory>
@@ -232,13 +230,15 @@
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="User">
             <viewScriptFile forActionName="updateprofile"/>
-
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="User">
             <viewScriptFile forActionName="addpost"/>
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="User">
             <viewScriptFile forActionName="editpost"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="User">
+            <viewScriptFile forActionName="deletepost"/>
           </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewHelpersDirectory/>

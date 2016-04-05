@@ -174,8 +174,20 @@ class UserController extends Zend_Controller_Action
 
     }
 
+    public function deletepostAction()
+    {
+        // action body
+        $post_id = $this->_request->getParam('pid');
+        $user_id=$this->_request->getParam('user_id');
+        $post_obj = new Application_Model_UserExperience();
+        $post_obj->deletePost($post_id);
+        $this->redirect('/user/posts/user_id/'.$user_id);
+    }
+
 
 }
+
+
 
 
 
