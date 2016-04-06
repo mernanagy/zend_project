@@ -50,6 +50,8 @@
           <actionMethod actionName="show"/>
           <actionMethod actionName="articelPostComment"/>
           <actionMethod actionName="articelGetComment"/>
+          <actionMethod actionName="articelUpdateComment"/>
+          <actionMethod actionName="articelDeleteComment"/>
         </controllerFile>
         <controllerFile controllerName="Country">
           <actionMethod actionName="index"/>
@@ -251,6 +253,12 @@
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Article">
             <viewScriptFile forActionName="articelGetComment"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Article">
+            <viewScriptFile forActionName="articelUpdateComment"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Article">
+            <viewScriptFile forActionName="articelDeleteComment"/>
           </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewHelpersDirectory/>

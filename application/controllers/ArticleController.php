@@ -84,8 +84,43 @@ class ArticleController extends Zend_Controller_Action
         }
     }
 
+    public function articelUpdateCommentAction()
+    {
+        $comment_model_obj = new Application_Model_Comment();
+        // action body
+        $this->_helper->layout()->disableLayout();
+        $this->_helper->viewRenderer->setNoRender(true);
+
+        if (isset($_POST))
+        {
+            $update_arr['content'] =$_POST['content'];
+
+            $comment_model_obj->update_comment($_POST['id'],$update_arr);
+        }
+
+        echo json_encode($_POST,JSON_UNESCAPED_SLASHES);
+    }
+
+    public function articelDeleteCommentAction()
+    {
+        $comment_model_obj = new Application_Model_Comment();
+        // action body
+        $this->_helper->layout()->disableLayout();
+        $this->_helper->viewRenderer->setNoRender(true);
+
+        if (isset($_POST))
+        {
+            
+            $comment_model_obj->delete_comment($_POST['id']);
+        }
+    }
+
 
 }
+
+
+
+
 
 
 

@@ -84,6 +84,32 @@ else{
                 }
 
             });
+        },
+
+
+        putComment: function(commentJSON, success, error) {
+
+            $.ajax({
+                type: 'post',
+                url: '/article/articel-update-comment' ,
+                data: commentJSON,
+                success: function(comment) {
+                    var parsed_comment = JSON.parse(comment);
+                    success(parsed_comment);
+                }
+
+            });
+        },
+        deleteComment: function(commentJSON, success, error) {
+            $.ajax({
+                type: 'post',
+                url: '/article/articel-delete-comment',
+                data: commentJSON,
+                success: success,
+                error: error
+            });
         }
+
+
     });
 </script>

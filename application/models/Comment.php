@@ -34,5 +34,16 @@ class Application_Model_Comment extends Zend_Db_Table_Abstract
         return $this->fetchAll("user_posts_id=$article_id");
     }
 
+
+    public function update_comment ($comment_id,$data) {
+        $this->update($data,"id=$comment_id");
+
+    }
+
+    public function delete_comment ($comment_id)
+    {
+        $this->delete("id=$comment_id");
+    }
+
 }
 
