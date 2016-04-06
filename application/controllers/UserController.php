@@ -201,13 +201,25 @@ class UserController extends Zend_Controller_Action
         $this->redirect('/user/posts/user_id/'.$user_id);
     }
 
+    public function siginupAction()
+    {
+            // action body
+
+        $form = new Application_Form_Siginup();
+        $request = $this->getRequest();
+        if ($request->isPost()) {
+            if ($form->isValid($request->getPost())) {
+                $user_model = new Application_Model_User();
+                $user_model->addNewUser($request->getParams());
+                $this->redirect('/index/list-countary-a-city');
+            }
+        }
+        $this->view->signUp_form = $form;
+    }
+
+
 
 }
-
-
-
-
-
 
 
 
