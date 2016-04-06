@@ -41,5 +41,7 @@ class Application_Model_Hotels extends Zend_Db_Table_Abstract
     {
         $this->delete("id=$hote_id");
     }
+
+
 }
 
