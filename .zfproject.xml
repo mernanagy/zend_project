@@ -49,6 +49,7 @@
           <actionMethod actionName="index"/>
           <actionMethod actionName="show"/>
           <actionMethod actionName="articelPostComment"/>
+          <actionMethod actionName="articelGetComment"/>
         </controllerFile>
         <controllerFile controllerName="Country">
           <actionMethod actionName="index"/>
@@ -247,6 +248,9 @@
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Article">
             <viewScriptFile forActionName="articelPostComment"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Article">
+            <viewScriptFile forActionName="articelGetComment"/>
           </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewHelpersDirectory/>

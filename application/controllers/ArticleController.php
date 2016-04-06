@@ -46,8 +46,48 @@ class ArticleController extends Zend_Controller_Action
         }
     }
 
+    public function articelGetCommentAction()
+    {
+        $comment_model_obj = new Application_Model_Comment();
+        $user_model_obj = new Application_Model_User();
+
+        // action body
+       $this->_helper->layout()->disableLayout();
+        $this->_helper->viewRenderer->setNoRender(true);
+
+        if (isset($_GET['get_comments']))
+        {
+        $comments = $comment_model_obj->get_comment($_GET['get_comments']);
+
+        foreach($comments as $key=>$value)
+        {
+            $comments_arr[$key]['id']=$value->id;
+            $comments_arr[$key]['parent']="";
+            $comments_arr[$key]['created']="";
+            $comments_arr[$key]['modified']="";
+            $comments_arr[$key]['content']=$value->content;
+
+            $owner_of_comment = $user_model_obj->get_user_by_id($value->user_id);
+            $comments_arr[$key]['fullname']=$owner_of_comment->name;
+
+            $comments_arr[$key]['profile_picture_url']='http://travel.com'.$owner_of_comment->imag_path;
+
+            if ($value->user_id == $_GET['user_id'])
+            $comments_arr[$key]['created_by_current_user']=true;
+            else
+                $comments_arr[$key]['created_by_current_user']=false;
+
+
+        }
+
+            echo json_encode($comments_arr,JSON_UNESCAPED_SLASHES);
+        }
+    }
+
 
 }
+
+
 
 
 

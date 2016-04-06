@@ -64,7 +64,9 @@ class Application_Model_User extends Zend_Db_Table_Abstract
         return $posts;
     }
 
-
+    function get_user_by_id($user_id){
+        return $this->find($user_id)->current();
+    }
 
 }
 

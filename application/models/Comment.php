@@ -29,5 +29,10 @@ class Application_Model_Comment extends Zend_Db_Table_Abstract
 
     }
 
+    public function get_comment ($article_id)
+    {
+        return $this->fetchAll("user_posts_id=$article_id");
+    }
+
 }
 
