@@ -73,12 +73,11 @@
         <formFile formName="Home"/>
         <formFile formName="Addlocation"/>
         <formFile formName="Addhotel"/>
-
         <formFile formName="UserEdit"/>
         <formFile formName="UserEdit"/>
-
         <formFile formName="Post"/>
-
+        <formFile formName="Listcity"/>
+        <formFile formName="Listlocation"/>
       </formsDirectory>
       <layoutsDirectory>
         <layoutScriptsDirectory>
@@ -213,7 +212,6 @@
           <viewControllerScriptsDirectory forControllerName="Country">
             <viewScriptFile forActionName="listCountry"/>
           </viewControllerScriptsDirectory>
-
           <viewControllerScriptsDirectory forControllerName="Admin">
             <viewScriptFile forActionName="allusers"/>
           </viewControllerScriptsDirectory>

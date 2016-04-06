@@ -47,5 +47,11 @@ class Application_Model_Locations extends Zend_Db_Table_Abstract
         $this->delete("id=$loc_id");
     }
 
+    function listlocationbycityId($city_id)
+    {
+       return $this->fetchAll("city_id=$city_id",null,null)->toArray();
+
+    }
+
 }
 

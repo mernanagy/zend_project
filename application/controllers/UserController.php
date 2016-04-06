@@ -93,6 +93,14 @@ class UserController extends Zend_Controller_Action
     public function carAction()
     {
         // action body
+
+        $location_model=new Application_Model_Locations ();
+        $cityid = $this->_request->getParam('city_id');
+        $listlocation=$location_model->listlocationbycityId($cityid);
+        $locationdown=new Application_Form_Listlocation();
+        //$userid=$this->_request->getParam('user_id');
+        $this->view->listlocation=$listlocation;
+        $this->view->datalocation=$locationdown;
     }
 
     public function updateprofileAction()

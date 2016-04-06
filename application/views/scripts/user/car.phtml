@@ -1,4 +1,55 @@
-<br /><br />
-<div id="view-content">
-	<p>View script for controller <b>User</b> and script/action name <b>car</b></p>
-</div>
+<br><br><br><br>
+
+<?php
+echo $this->datalocation; 
+//foreach ($this->listlocation as $key => $value) {
+	# code...
+	//echo $value['name'];
+	//echo "<script> document.getElementById('location').value=".$value['name']."</script>";
+//}
+
+
+
+?>
+
+<script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+<script src="/resources/js/bootstrap-datepicker.js"></script>
+<script> 
+$(function () {
+
+	<?php
+	foreach ($this->listlocation as $key => $value) 
+		{
+	?>	 
+	$('#location').append("<option>  <?php echo $value['name']; ?> </option>");
+	
+	<?php }?>
+	
+  $('#date_field').datepicker('show');
+  $('#date_field2').datepicker('show');
+  $('#date_field').css('background-color','#145FFF');
+   <?php
+	for ($i=1;$i<=60;$i++) 
+		{
+	?>	 
+	$('#fromTime').append("<option>  <?php echo $i; ?> </option>");
+	
+	<?php }?>
+
+  $('#date_field2').css('background-color','#145FFF');
+  
+  <?php
+	for ($i=1;$i<=60;$i++) 
+		{
+	?>	 
+	$('#ToTime').append("<option>  <?php echo $i; ?> </option>");
+	
+	<?php }?>
+	$('#submit').css('background-color','#135BFF');
+	
+
+});
+</script>
+
+
+
