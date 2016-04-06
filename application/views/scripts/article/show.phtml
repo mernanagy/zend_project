@@ -57,6 +57,23 @@ else{
                 user_has_upvoted: false
             }];
             success(commentsArray);
+        },
+        postComment: function(commentJSON, success, error) {
+            commentJSON.id=<?php echo $id;?>; //user id
+            commentJSON.parent=<?php echo $article_id ;?>; //post id
+
+            $.ajax({
+                type: 'post',
+                url: '/article/articel-post-comment',
+                data: commentJSON,
+                success: function(comment) {
+
+                    var parsed = JSON.parse(comment);
+                    success(parsed)
+
+                }
+
+            });
         }
     });
 </script>

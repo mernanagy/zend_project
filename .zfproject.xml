@@ -48,6 +48,7 @@
         <controllerFile controllerName="Article">
           <actionMethod actionName="index"/>
           <actionMethod actionName="show"/>
+          <actionMethod actionName="articelPostComment"/>
         </controllerFile>
         <controllerFile controllerName="Country">
           <actionMethod actionName="index"/>
@@ -74,12 +75,9 @@
         <formFile formName="Home"/>
         <formFile formName="Addlocation"/>
         <formFile formName="Addhotel"/>
-
         <formFile formName="UserEdit"/>
         <formFile formName="UserEdit"/>
-
         <formFile formName="Post"/>
-
       </formsDirectory>
       <layoutsDirectory>
         <layoutScriptsDirectory>
@@ -246,6 +244,9 @@
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="User">
             <viewScriptFile forActionName="deletepost"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Article">
+            <viewScriptFile forActionName="articelPostComment"/>
           </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewHelpersDirectory/>

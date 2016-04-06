@@ -26,8 +26,30 @@ class ArticleController extends Zend_Controller_Action
 
     }
 
+    public function articelPostCommentAction()
+    {
+        $comment_model_obj = new Application_Model_Comment();
+        // action body
+        $this->_helper->layout()->disableLayout();
+        $this->_helper->viewRenderer->setNoRender(true);
+
+        if (isset($_POST['parent']))
+        {
+
+            $new_comment_id= $comment_model_obj->post_comment($_POST['id'],$_POST['parent'],$_POST['content']);
+
+            $_POST['id']=$new_comment_id;
+            $_POST['parent']= "";
+
+
+            echo json_encode($_POST);
+        }
+    }
+
 
 }
+
+
 
 
 

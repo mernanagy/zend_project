@@ -16,5 +16,18 @@ class Application_Model_Comment extends Zend_Db_Table_Abstract
             'onDelete'=>'cascade'
         ));
 
+    public function post_comment ($user_id,$article_id,$comment){
+
+        $row = $this->createRow();
+
+        $row->content = $comment;
+        $row->user_id = $user_id;
+        $row->user_posts_id	=$article_id;
+
+        return $row->save();
+
+
+    }
+
 }
 
