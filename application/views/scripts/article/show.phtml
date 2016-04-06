@@ -13,10 +13,10 @@ if (!empty($sessionRead)) {
     $read_only="false";
 }
 else{
-    $image_path="";
+    $image_path=" ";
     $read_only = "true";
-    $name="";
-    $id="";
+    $name=" ";
+    $id="0";
 }
 ?>
 <br> <br> <br>
@@ -32,7 +32,7 @@ else{
 <script>
 
     $("#comments-container").comments({
-        profilePictureURL: 'http://travel.com/<?php echo $image_path?>',
+        profilePictureURL: 'http://travel.com<?php echo $image_path?>',
         newestText: '',
         oldestText: '',
 
@@ -48,15 +48,68 @@ else{
         roundProfilePictures:true,
            readOnly: <?php echo $read_only;?>, //vip
         getComments: function(success, error) {
-            var commentsArray = [{
-                id: 1,
-                created: '2015-10-01',
-                content: 'Lorem ipsum dolort sit amet',
-                fullname: 'Simon Powell',
-                upvote_count: 2,
-                user_has_upvoted: false
-            }];
-            success(commentsArray);
+            $.ajax({
+                type: 'get',
+                url: '/article/articel-get-comment',
+                data: {'get_comments':'<?php echo $article_id ;?>','user_id':'<?php echo $id;?>'}
+                ,
+                success: function(commentsArray) {
+
+                      var parsed = JSON.parse(commentsArray);
+
+                    success(parsed)
+                }
+
+            });
+
+
+
+        },
+
+
+        postComment: function(commentJSON, success, error) {
+
+            commentJSON.id=<?php echo $id;?>;
+            commentJSON.parent=<?php echo $article_id ;?>;
+
+            $.ajax({
+                type: 'post',
+                url: '/article/articel-post-comment',
+                data: commentJSON,
+                success: function(comment) {
+
+                    var parsed = JSON.parse(comment);
+                    success(parsed)
+
+                }
+
+            });
+        },
+
+
+        putComment: function(commentJSON, success, error) {
+
+            $.ajax({
+                type: 'post',
+                url: '/article/articel-update-comment' ,
+                data: commentJSON,
+                success: function(comment) {
+                    var parsed_comment = JSON.parse(comment);
+                    success(parsed_comment);
+                }
+
+            });
+        },
+        deleteComment: function(commentJSON, success, error) {
+            $.ajax({
+                type: 'post',
+                url: '/article/articel-delete-comment',
+                data: commentJSON,
+                success: success,
+                error: error
+            });
         }
+
+
     });
 </script>

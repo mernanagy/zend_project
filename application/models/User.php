@@ -64,7 +64,31 @@ class Application_Model_User extends Zend_Db_Table_Abstract
         return $posts;
     }
 
+    function get_user_by_id($user_id){
+        return $this->find($user_id)->current();
+    }
 
+
+    function addNewUser($post)
+    {
+        $row = $this->createRow();
+        $row->name =  $post['name'];
+        $row->email =  $post['email'];
+        $row->password = $post['pswd'];
+        $row->save();
+
+    }
+
+
+
+
+    function getHotelByUserId($uid)
+    {
+        $userrow_object=$this->find($uid)->current();
+        $hotelReserve=$userrow_object->findDependentRowset('Application_Model_HotelReservation');
+        return $hotelReserve;
+
+    }
 
 }
 

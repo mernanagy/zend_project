@@ -97,5 +97,15 @@ class Application_Model_City extends Zend_Db_Table_Abstract
     
        return $this->fetchAll("country_id=$country_id",null,null)->toArray();
     }
+
+    function getHotelByCityId($city_id){
+
+        $city_obj =$this->find($city_id)->current();
+
+        //return a row set of objects
+        $hotelByCity=$city_obj->findDependentRowset('Application_Model_Hotels');
+
+        return $hotelByCity;
+    }
 }
 

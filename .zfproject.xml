@@ -48,6 +48,10 @@
         <controllerFile controllerName="Article">
           <actionMethod actionName="index"/>
           <actionMethod actionName="show"/>
+          <actionMethod actionName="articelPostComment"/>
+          <actionMethod actionName="articelGetComment"/>
+          <actionMethod actionName="articelUpdateComment"/>
+          <actionMethod actionName="articelDeleteComment"/>
         </controllerFile>
         <controllerFile controllerName="Country">
           <actionMethod actionName="index"/>
@@ -64,6 +68,9 @@
           <actionMethod actionName="updateprofile"/>
           <actionMethod actionName="addpost"/>
           <actionMethod actionName="editpost"/>
+          <actionMethod actionName="deletepost"/>
+          <actionMethod actionName="siginup"/>
+          <actionMethod actionName="allhotelreservation"/>
         </controllerFile>
       </controllersDirectory>
       <formsDirectory>
@@ -78,6 +85,8 @@
         <formFile formName="Post"/>
         <formFile formName="Listcity"/>
         <formFile formName="Listlocation"/>
+        <formFile formName="Siginup"/>
+        <formFile formName="Hotelreservation"/>
       </formsDirectory>
       <layoutsDirectory>
         <layoutScriptsDirectory>
@@ -241,6 +250,28 @@
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="User">
             <viewScriptFile forActionName="editpost"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="User">
+            <viewScriptFile forActionName="deletepost"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Article">
+            <viewScriptFile forActionName="articelPostComment"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Article">
+            <viewScriptFile forActionName="articelGetComment"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Article">
+            <viewScriptFile forActionName="articelUpdateComment"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Article">
+            <viewScriptFile forActionName="articelDeleteComment"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="User">
+
+            <viewScriptFile forActionName="siginup"/>
+
+            <viewScriptFile forActionName="allhotelreservation"/>
+
           </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewHelpersDirectory/>

@@ -54,5 +54,10 @@ class Application_Model_UserExperience extends Zend_Db_Table_Abstract
             $this->update($edit_post, "id=$pid");
 
     }
+
+    function deletePost($post_id)
+    {
+        $this->delete("id=$post_id");
+    }
 }
 
