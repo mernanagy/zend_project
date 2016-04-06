@@ -69,6 +69,7 @@
           <actionMethod actionName="addpost"/>
           <actionMethod actionName="editpost"/>
           <actionMethod actionName="deletepost"/>
+          <actionMethod actionName="allhotelreservation"/>
         </controllerFile>
       </controllersDirectory>
       <formsDirectory>
@@ -81,6 +82,7 @@
         <formFile formName="UserEdit"/>
         <formFile formName="UserEdit"/>
         <formFile formName="Post"/>
+        <formFile formName="Hotelreservation"/>
       </formsDirectory>
       <layoutsDirectory>
         <layoutScriptsDirectory>
@@ -259,6 +261,9 @@
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Article">
             <viewScriptFile forActionName="articelDeleteComment"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="User">
+            <viewScriptFile forActionName="allhotelreservation"/>
           </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewHelpersDirectory/>

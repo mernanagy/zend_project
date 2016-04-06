@@ -88,6 +88,31 @@ class UserController extends Zend_Controller_Action
     public function hotelAction()
     {
         // action body
+        $user_id = $this->_request->getParam('user_id');
+        $city_id= $this->_request->getParam('city_id');
+        $hotelreservation_form=new Application_Form_Hotelreservation();
+        $hotelreservation_obj=new Application_Model_HotelReservation();
+        $city_obj=new Application_Model_City();
+        $hotelByCityID=$city_obj->getHotelByCityId($city_id);
+        foreach($hotelByCityID as $key=>$value)
+        {
+            $hotelreservation_form->name->addMultiOption($value['name'],$value['name']);
+        }
+
+        $this->view->hotelreservation_form=$hotelreservation_form;
+
+        $request = $this->getRequest();
+        if ($request->isPost()) {
+            if ($hotelreservation_form->isValid($request->getPost())) {
+
+                $hotelreservation_obj->insertNewHotelReserve($_POST,$user_id);
+                $this->redirect('/user/allhotelreservation/user_id/'.$user_id);
+            }
+        }
+
+
+
+
     }
 
     public function carAction()
@@ -201,8 +226,28 @@ class UserController extends Zend_Controller_Action
         $this->redirect('/user/posts/user_id/'.$user_id);
     }
 
+    public function allhotelreservationAction()
+    {
+        // action body
+        $user_obj = new Application_Model_User();
+        $user_id = $this->_request->getParam('user_id');
+        $hotelByUserId = $user_obj->getHotelByUserId($user_id);
+        foreach ($hotelByUserId as $key => $value) {
+            $hotel[$key]['id'] = $value->id;
+            $hotel[$key]['name'] = $value->name;
+            $hotel[$key]['time_from'] = $value->time_from;
+            $hotel[$key]['time_to'] = $value->time_to;
+            $hotel[$key]['number_of_adults'] = $value->number_of_adults;
 
+//        }
+//        $this->view->user_id=$user_id;
+            $this->view->hotelByUserId = $hotel;
+        }
+
+    }
 }
+
+
 
 
 
