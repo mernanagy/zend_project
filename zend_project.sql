@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Apr 05, 2016 at 03:07 PM
+-- Generation Time: Apr 07, 2016 at 11:00 PM
 -- Server version: 5.5.47-0ubuntu0.14.04.1
 -- PHP Version: 5.5.9-1ubuntu4.14
 
@@ -29,9 +29,11 @@ SET time_zone = "+00:00";
 CREATE TABLE IF NOT EXISTS `car_rental` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `pick_up_location` varchar(100) NOT NULL,
-  `time_from` varchar(50) NOT NULL,
-  `time_to` varchar(50) NOT NULL,
+  `Date_from` varchar(50) NOT NULL,
+  `Date_to` varchar(50) NOT NULL,
   `user_id` int(11) NOT NULL,
+  `Time_from` int(30) NOT NULL,
+  `Time_to` int(30) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `user_id` (`user_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
@@ -53,14 +55,20 @@ CREATE TABLE IF NOT EXISTS `city` (
   `country_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `country_id` (`country_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=13 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=15 ;
 
 --
 -- Dumping data for table `city`
 --
 
 INSERT INTO `city` (`id`, `name`, `rate`, `imag_path`, `description`, `latitude`, `longitude`, `country_id`) VALUES
-(12, 'cairo', 5, '/images/cites/3.jpg', 'any thing', 30.0444, 31.2357, 26);
+(1, 'Sao Paulo city', 5, '/images/cites/Sao_Paulo_city.jpg', 'city in brazel', 1, 1, 1),
+(2, 'Fortaleza', 4, '/images/cites/Fortaleza.jpg', 'city in brazel', 1, 1, 4),
+(3, 'Shanghai', 4, '/images/cites/Shanghai.jpg', 'city in china', 1, 1, 4),
+(4, 'Guangzhou', 5, '/images/cites/Guangzhou.jpg', 'city in china', 1, 1, 4),
+(5, 'Cairo', 5, '/images/cites/Cairo.jpg', 'city in egypt', 1, 1, 5),
+(13, 'Paris', 6, '/images/cites/Paris.jpg', 'city in paris', 1, 1, 2),
+(14, ' Kuala Lumpur', 2, '/images/cites/ Kuala Lumpur.jpeg', 'in malyzia', 3.139, 101.687, 3);
 
 -- --------------------------------------------------------
 
@@ -76,14 +84,7 @@ CREATE TABLE IF NOT EXISTS `comment` (
   PRIMARY KEY (`id`),
   KEY `user_id` (`user_id`),
   KEY `user_posts_id` (`user_posts_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
-
---
--- Dumping data for table `comment`
---
-
-INSERT INTO `comment` (`id`, `content`, `user_posts_id`, `user_id`) VALUES
-(1, 'A little Comment My Friend', 1, 1);
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -97,14 +98,19 @@ CREATE TABLE IF NOT EXISTS `country` (
   `rate` int(11) NOT NULL,
   `image_path` varchar(100) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=27 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
 
 --
 -- Dumping data for table `country`
 --
 
 INSERT INTO `country` (`id`, `name`, `rate`, `image_path`) VALUES
-(26, 'Cairo', 5, '/images/countries/1.jpg');
+(1, 'Brazil', 5, '/images/countries/Brazil .jpg'),
+(2, 'France', 4, '/images/countries/France.jpg'),
+(3, 'Malaysia', 4, '/images/countries/Malaysia.jpg'),
+(4, 'China', 5, '/images/countries/China.jpg'),
+(5, 'Egypt', 5, '/images/countries/Egypt.jpg'),
+(6, 'Australia', 4, '/images/countries/Australia.jpg');
 
 -- --------------------------------------------------------
 
@@ -150,7 +156,7 @@ CREATE TABLE IF NOT EXISTS `location` (
   `city_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `city_id` (`city_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
 
 -- --------------------------------------------------------
 
@@ -168,14 +174,14 @@ CREATE TABLE IF NOT EXISTS `user` (
   `is_admin` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `email` (`email`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
 --
 -- Dumping data for table `user`
 --
 
 INSERT INTO `user` (`id`, `email`, `name`, `password`, `imag_path`, `is_active`, `is_admin`) VALUES
-(1, 'ahmed@yahoo.com', 'ahmed', 'opensource', '/images/users/default.jpeg', 1, 0);
+(2, 'ahmed3@yahoo.com', 'ahmedmohamed', 'opensource', '/images/users/(9) Facebook.png', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -193,14 +199,7 @@ CREATE TABLE IF NOT EXISTS `user_posts` (
   PRIMARY KEY (`id`),
   KEY `city_id` (`city_id`),
   KEY `user_id` (`user_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
-
---
--- Dumping data for table `user_posts`
---
-
-INSERT INTO `user_posts` (`id`, `title`, `content`, `image_path`, `city_id`, `user_id`) VALUES
-(1, 'Small_City Post_Title', 'this is a lot of wors to be in consederation my friend so please be patient ok .\r\n\r\n\r\n\r\nokksafjhajskhfoilk;andlvk;jffffffffffffffffasdff3rqwfasdf\r\n\r\n\r\nasdfasdfasdf', '/images/posts/3.jpg', 12, 1);
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 --
 -- Constraints for dumped tables
