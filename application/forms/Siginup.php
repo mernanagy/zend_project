@@ -29,6 +29,13 @@ class Application_Form_Siginup extends Zend_Form
             'field' => 'email',
             'messages' => array( 'recordFound' => 'Email already taken' )));
 
+        $imag_path = new Zend_Form_Element_File('imag_path');
+        $imag_path->setLabel('Upload Profile Picture:');
+        $imag_path->addValidator('Count', false, 1);
+        $imag_path->addValidator('Extension',false, 'jpg,jpeg,png,gif');
+
+
+
         $pswd = new Zend_Form_Element_Password('pswd');
         $pswd->setLabel('Password:');
         $pswd->setAttrib('class','form-control');
@@ -65,6 +72,7 @@ class Application_Form_Siginup extends Zend_Form
             $id,
             $name,
             $email,
+            $imag_path,
             $pswd,
             $confirmPswd,
             $submit,

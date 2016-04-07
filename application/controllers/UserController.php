@@ -242,8 +242,21 @@ class UserController extends Zend_Controller_Action
         $request = $this->getRequest();
         if ($request->isPost()) {
             if ($form->isValid($request->getPost())) {
+                $upload = new Zend_File_Transfer_Adapter_Http();
+                $name = $_FILES['imag_path']['name'];
+                if ($name != "") {
+                    $upload->addFilter('Rename',
+                        array('target' => "/var/www/html/zend_project/public/images/users/" . $name,
+                            'overwrite' => true));
+
+                    $_POST['imag_path'] = "/images/users/" . $name;
+                } else {
+                    $_POST['image_path'] = "";
+                }
+
+                $upload->receive();
                 $user_model = new Application_Model_User();
-                $user_model->addNewUser($request->getParams());
+                $user_model->addNewUser($_POST);
                 $this->redirect('/index/list-countary-a-city');
             }
         }
