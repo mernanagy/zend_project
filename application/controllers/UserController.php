@@ -413,11 +413,10 @@ class UserController extends Zend_Controller_Action
         $helper = $fb->getRedirectLoginHelper();
 
 
-        $loginUrl = $helper->getLoginUrl( $this->view->serverUrl().
-
-            '/user/fbauth');
+        $loginUrl = $helper->getLoginUrl( $this->view->serverUrl().'/user/fbauth');
         $this->view->facebook_url = $loginUrl;
     }
+}
 
 
 
