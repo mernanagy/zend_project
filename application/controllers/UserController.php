@@ -63,7 +63,7 @@ class UserController extends Zend_Controller_Action
     {
         // action body
         $auth = Zend_Auth::getInstance();
-
+        Zend_Session::namespaceUnset('facebook');
         $auth->clearIdentity();
 
         $this->redirect('/index/list-countary-a-city');
@@ -234,7 +234,6 @@ class UserController extends Zend_Controller_Action
         $this->redirect('/user/posts/user_id/'.$user_id);
     }
 
-
     public function siginupAction()
     {
             // action body
@@ -270,7 +269,111 @@ class UserController extends Zend_Controller_Action
         }
 
     }
+
+    public function fbauthAction()
+    {
+        // action body
+
+        $fb = new Facebook\Facebook([
+            'app_id' => '1677264832540895', // Replace {app-id} with your app id
+            'app_secret' => 'e6ba08afab0e709d64aa6b826e1e6be4',
+            'default_graph_version' => 'v2.5',
+        ]);
+
+        $helper = $fb->getRedirectLoginHelper();
+
+        var_dump($helper);
+        try {
+            $accessToken = $helper->getAccessToken();
+
+        }
+        catch (Facebook\Exceptions\FacebookResponseException $e) {
+// When Graph returns an error (headers link)
+            echo 'Graph returned an error: ' . $e->getMessage();
+            Exit;
+        }
+        catch (Facebook\Exceptions\FacebookSDKException $e) {
+// When validation fails or other local issues
+            echo 'Facebook SDK returned an error: ' . $e->getMessage();
+            Exit;
+        }
+
+
+        if (!isset($accessToken)) {
+            if ($helper->getError()) {
+                header('HTTP/1.0 401 Unauthorized');
+                echo "Error: " . $helper->getError() . "\n";
+                echo "Error Code: " . $helper->getErrorCode() . "\n";
+                echo "Error Reason: " . $helper->getErrorReason() . "\n";
+                echo "Error Description: " . $helper->getErrorDescription() .
+                    "\n";
+            }
+            else {
+                header('HTTP/1.0 400 Bad Request');
+                echo 'Bad request';
+            }
+            Exit;
+        }
+
+        $oAuth2Client = $fb-> getOAuth2Client ();
+//check if access token expired
+        if (!$accessToken-> isLongLived ()) {
+// Exchanges a short-lived access token for a long-lived one
+            try {
+// try to get another access token
+                $accessToken = $oAuth2Client-> getLongLivedAccessToken ($accessToken);
+            }
+            catch (Facebook\Exceptions\FacebookSDKException $e) {
+                echo "<p>Error getting long-lived access token: " . $helper->getMessage () . "</p>\n\n";
+                Exit;
+            }
+        }
+
+        //Sets the default fallback access token so we don't have to pass it to each request
+        $fb->setDefaultAccessToken($accessToken);
+        try {
+            $response = $fb->get('/me');
+            $userNode = $response->getGraphUser();
+        }
+        catch (Facebook\Exceptions\FacebookResponseException $e) {
+// When Graph returns an error
+            echo 'Graph returned an error: ' . $e->getMessage();
+            Exit;
+        }
+        catch (Facebook\Exceptions\FacebookSDKException $e) {
+// When validation fails or other local issues
+            echo 'Facebook SDK returned an error: ' . $e->getMessage();
+            Exit;
+        }
+        $fpsession = new Zend_Session_Namespace('facebook');
+// write in session email & id & first_name
+        $fpsession->first_name = $userNode->getName();
+        $this->redirect('/index/index');
+    }
+
+    public function fbloginformAction()
+    {
+        // action body
+        $fb = new Facebook\Facebook([
+                        'app_id' => '1677264832540895', // Replace {app-id} with your app id
+                        'app_secret' => 'e6ba08afab0e709d64aa6b826e1e6be4',
+                        'default_graph_version' => 'v2.5',
+                    ]);
+
+        $helper = $fb->getRedirectLoginHelper();
+
+        $loginUrl = $helper->getLoginUrl( $this->view->serverUrl().
+
+            '/user/fbauth');
+        $this->view->facebook_url = $loginUrl;
+    }
+
+
 }
+
+
+
+
 
 
 
