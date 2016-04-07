@@ -234,7 +234,7 @@ class UserController extends Zend_Controller_Action
         $this->redirect('/user/posts/user_id/'.$user_id);
     }
 
-<<<<<<< HEAD
+
     public function siginupAction()
     {
             // action body
@@ -250,7 +250,7 @@ class UserController extends Zend_Controller_Action
         }
         $this->view->signUp_form = $form;
     }
-=======
+
     public function allhotelreservationAction()
     {
         // action body
@@ -273,11 +273,11 @@ class UserController extends Zend_Controller_Action
 }
 
 
->>>>>>> 922932bf30bfcd3e0965bfac360ec671425cca50
 
 
 
-}
+
+
 
 
 

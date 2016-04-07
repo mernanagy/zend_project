@@ -62,7 +62,7 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-
+                <?php $country_obj = new Application_Model_Country(); $countries=$country_obj->listCountries();?>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Countries <span class="caret"></span></a>
                     <ul class="dropdown-menu">
@@ -70,8 +70,14 @@
                         <?php
                           
                             
-                             echo $this->layout()->Country ;
-                                 
+
+                            foreach ($countries as $key=>$value)
+                            {
+                                ?>
+                        <li><a href="/country/list-cities/id/<?php echo $value['id'];?>"><?php echo $value['name']; ?></a></li>
+                        <?php
+
+                            }
 
                           
 
@@ -181,19 +187,15 @@
 <?php echo $this->layout()->content; ?>
 
 <!-- Foter Content-->
-<div class="site-footer" style="width:100%;
-    height:100px;
-    position:absolute;
-    bottom:0;
-    left:0;">
+<div class="site-footer" >
         <div class="container">
             <div class="row">
                 <div class="col-md-8 col-sm-6">
                     <span id="copyright">
                     	Copyright &copy; 2016 <a href="#">Zend Project</a>
-                    	
-                        
-                      
+
+
+
                     </span>
 
             </div> <!-- /.col-md-6 -->

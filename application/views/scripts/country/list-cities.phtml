@@ -14,17 +14,25 @@ echo '<div id="products" class="content-section">';
             echo '</div> <!-- /.row -->';
 echo "<center><table>";
 echo "<br><br>";
- 
- foreach($this->allcities as $key => $value)
- {
- 	
+foreach($this->allcities as $key => $value)
+{
+ ?>
+
+<div class="row"><div class="col-md-4 col-sm-6"> <div class="product-item"><div class="item-thumb"><div class="overlay"><div class="overlay-inner"><a href="/city/list-experience/city_id/<?php echo $value['id']; ?> "><?php echo $value['name'];?></a></div></div><img style='width:400px; height:400px;' src="<?php echo $value['imag_path']; ?>"  alt="no images was found for this country"></div> </div></div></div>
+<?php
+}
+ //foreach($this->allcities as $key => $value)
+ //{
+ 	?>
+    
+<?php
    //echo"<br><br><br>";
-   echo "<tr><td><h3>".$value['name']."</h3></td>";
-   echo "<td><img src='".$value['imag_path']."'style='width:100px; height:100px;'></td></tr>";
+  // echo "<tr><td><h3>".$value['name']."</h3></td>";
+   //echo "<td><img src='".$value['imag_path']."'style='width:100px; height:100px;'></td></tr>";
  //echo "<h1>".$value['name']."</h1>";
    echo "</tr>";
  
- }
+
  
  echo "</center></table></div></div>";
 
