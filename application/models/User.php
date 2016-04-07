@@ -50,7 +50,11 @@ class Application_Model_User extends Zend_Db_Table_Abstract
        $user_data['email']=$userdata['email'];
        $user_data['name']=$userdata['name'];
        $user_data['password']=$userdata['password'];
-       $user_data['imag_path']=$userdata['imag_path'];
+       if($userdata['imag_path']!="")
+       {
+         $user_data['imag_path']=$userdata['imag_path'];
+       }
+       
        $this->update($user_data,"id=$id");
     }
 

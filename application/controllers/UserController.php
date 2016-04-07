@@ -123,9 +123,24 @@ class UserController extends Zend_Controller_Action
         $cityid = $this->_request->getParam('city_id');
         $listlocation=$location_model->listlocationbycityId($cityid);
         $locationdown=new Application_Form_Listlocation();
-        //$userid=$this->_request->getParam('user_id');
+        $userid=$this->_request->getParam('user_id');
         $this->view->listlocation=$listlocation;
         $this->view->datalocation=$locationdown;
+
+        $request = $this->getRequest();
+        if($this->_request->isPost())
+        {
+          if($locationdown->isValid($_POST))
+          {
+            $car_rental_model=new Application_Model_CarRental();
+            $_POST['user_id']=$userid;
+            $this->view->post = $_POST;
+            $car_rental_model->addCarRental($_POST['user_id'],$_POST['date_field'],$_POST['date_field2'],$_POST['fromTime'],$_POST['ToTime'],$_POST['location']);
+           // $this->redirect('/index/index');
+
+          }
+
+        }
     }
 
     public function updateprofileAction()
@@ -140,12 +155,33 @@ class UserController extends Zend_Controller_Action
         $request = $this->getRequest ();
         if($request-> isPost()){
             if($form-> isValid($request-> getPost())){
+               
+               $uploadImage=new Zend_File_Transfer_Adapter_Http();
+               $name=$_FILES['imag_path']['name'];
+               if($name!="")
+               {
+                $uploadImage->addFilter('Rename',array('target'=>"/var/www/zend_project/public/images/users/".$name,'overwrite'=>true ));
+                 $_POST['imag_path']='/images/users/'.$name;
+               }
+               else
+               {
+                $_POST['imag_path']="";
+
+               }
+               $uploadImage->receive();
                $user_model->updateuser($id,$_POST);
                $this->redirect('/index/list-countary-a-city');
             }
+            
 
         }
-        
+        $car_rental_model=new Application_Model_CarRental();
+        $data=$car_rental_model->selectallRental($id);
+        $this->view->datacar=$data;
+
+        $hotel_reserver_model=new Application_Model_HotelReservation();
+        $dataHotel=$hotel_reserver_model->listallhotelreserve($id);
+        $this->view->dathotel=$dataHotel;
 
          
     }
@@ -234,7 +270,7 @@ class UserController extends Zend_Controller_Action
         $this->redirect('/user/posts/user_id/'.$user_id);
     }
 
-<<<<<<< HEAD
+
     public function siginupAction()
     {
             // action body
@@ -250,7 +286,7 @@ class UserController extends Zend_Controller_Action
         }
         $this->view->signUp_form = $form;
     }
-=======
+
     public function allhotelreservationAction()
     {
         // action body
@@ -273,11 +309,11 @@ class UserController extends Zend_Controller_Action
 }
 
 
->>>>>>> 922932bf30bfcd3e0965bfac360ec671425cca50
 
 
 
-}
+
+
 
 
 

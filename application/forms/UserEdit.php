@@ -40,12 +40,18 @@ class Application_Form_UserEdit extends Zend_Form
         $Password->setLabel('Password: ');
         $Password->setRequired();
         $Password->addValidator('StringLength', false, Array(5,20));
+        $imag_path=new Zend_Form_Element_File('imag_path');
+        $imag_path->setLabel('Upload Image');
+        $imag_path->addValidator('count',false,1);
+        $imag_path->addValidator('Extension',false,'jpg,jpeg,png,gif');
+
         
         $submit=new Zend_Form_Element_Submit('submit');
         $submit->setvalue('Save');
         $submit->setAttrib('class','btn btn-success');
+        
 
-        $this->addElements(array($Fname,$Email,$Password,$submit));
+        $this->addElements(array($Fname,$Email,$Password,$imag_path,$submit));
 
 
     }
