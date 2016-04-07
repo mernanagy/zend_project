@@ -16,10 +16,26 @@ echo "<center><table>";
 echo "<br><br>";
 foreach($this->allcities as $key => $value)
 {
- ?>
+    echo'<div class="col-md-4 col-sm-6">';
+    echo'<div class="product-item">';
+    echo'<div class="item-thumb">';
 
-<div class="row"><div class="col-md-4 col-sm-6"> <div class="product-item"><div class="item-thumb"><div class="overlay"><div class="overlay-inner"><a href="/city/list-experience/city_id/<?php echo $value['id']; ?> "><?php echo $value['name'];?></a></div></div><img style='width:400px; height:400px;' src="<?php echo $value['imag_path']; ?>"  alt="no images was found for this country"></div> </div></div></div>
-<?php
+    echo'<div class="overlay">';
+    echo'<div class="overlay-inner">';
+    ?>
+    <a href="/city/list-experience/city_id/<?php echo $value['id']?>" class="view-detail"><?php echo $value['name'];?></a></div></div><img style='width:400px; height:400px;' src="<?php echo $value['imag_path'];?>"  alt="no images was found for this country">
+    <?php
+    // echo' <a href="/city/list-experience/city_id/'.$value['id'].'" class="view-detail" alt=""></a>';
+
+    // echo'</div>';
+    // echo'</div> <!-- /.overlay -->';
+
+    // echo"<img style='width:400px; height:400px;' src='".$value['imag_path']."'". "alt=''>";
+
+    echo'</div> <!-- /.item-thumb -->';
+    echo'</div> <!-- /.product-item -->';
+    echo'</div> <!-- /.col-md-4-->';
+
 }
  //foreach($this->allcities as $key => $value)
  //{

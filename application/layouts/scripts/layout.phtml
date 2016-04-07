@@ -120,7 +120,7 @@
                     {
                     ?>
                         <li> <a class="navbar-brand" href="/user/posts/user_id/<?php echo $id;?>">My Posts</a></li>
-                    <li><a></a></li>
+                    <li><a ></a></li>
                         <li> <a class="navbar-brand" style="display: none" id='hotel' href="/user/hotel/user_id/<?php echo $id;?>">Reserve Hotel</a></li>
                     <li><a></a></li>
                         <li> <a class="navbar-brand" style="display: none" id='car' href="/user/car/user_id/<?php echo $id;?>">Rent Car</a></li>
@@ -128,7 +128,7 @@
                         <li> <a class="navbar-brand" href="/user/updateprofile/user_id/<?php echo $id;?>">Update Profile</a></li>
                     <li><a></a></li>
                     <?php }?>
-                    <li> <a href="/user/signout" style="color: white;"  class="btn btn-danger" >Sign Out</a> </li>
+                    <li> <a href="/user/signout" style="color: white;"  class="btn btn-danger" >  Sign Out</a> </li>
 
 
                     <?php
@@ -149,7 +149,7 @@
                 else{
                 ?>
                     <!-- changeable -->
-                <li> <button id="sign-in"  class="btn btn-default" >Sign In</button> </li>
+                <li> <a id="sign-in"  class="glyphicon glyphicon-log-in navbar-brand" > LogIn</a> </li>
                     <li><a></a></li>
                     <?php
 //                    $fb = new Facebook\Facebook([
@@ -163,9 +163,9 @@
                     //  echo  $login_url;
 
                     ?>
-                    <li><a href="/user/fbloginform"  ><button class="btn btn-primary">Login With Facebook</button></a></li>
+                    <li><a href="/user/fbloginform" class="fa fa-facebook navbar-brand"> Login With Facebook</a></li>
                     <li><a></a></li>
-                <li><a href="/user/siginup"  ><button class="btn btn-default">Sign Up</button></a></li>
+                <li><a href="/user/siginup" button class="glyphicon glyphicon-registration-mark navbar-brand"> Sign Up</a></li>
                 <?php } ?>
 
             </ul>
