@@ -42,6 +42,14 @@ class Application_Form_Addcity extends Zend_Form
         ));
         $description->setRequired();
 
+        $link=new Zend_Form_Element_Hidden('link');
+        $link->setLabel('choose latitude and longitude');
+        $link->setDescription('<a href="http://www.mapsofworld.com/lat_long/cairo.html" target="_blank""><h3>Click here to look for latitude and longitude</h3></a>');
+        $link->getDecorator('Description')->setOption('escape', false);
+        $link->setAttribs(array(
+            'class'=>'form-control'
+        ));
+
         $latitude=new Zend_Form_Element_Text('latitude');
         $latitude->setLabel('Set Latitude:');
         $latitude->setAttribs(array(
@@ -88,6 +96,7 @@ class Application_Form_Addcity extends Zend_Form
             $rate,
             $imag_path,
             $description,
+            $link,
             $latitude,
             $longitude,
             $country_id,
