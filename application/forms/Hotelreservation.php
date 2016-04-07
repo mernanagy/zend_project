@@ -27,7 +27,7 @@ class Application_Form_Hotelreservation extends Zend_Form
         $time_from=new Zend_Form_Element_Text('time_from');
         $time_from->setLabel('Time From:');
         $time_from->setAttribs(array(
-            'placeholder'=>'SAN STEFANO',
+            'placeholder'=>'04/20/2000',
             'class'=>'form-control ',
             'id'=>'time_form',
             'readonly'=>'true'
@@ -37,7 +37,7 @@ class Application_Form_Hotelreservation extends Zend_Form
         $time_to=new Zend_Form_Element_Text('time_to');
         $time_to->setLabel('Time To:');
         $time_to->setAttribs(array(
-            'placeholder'=>'SAN STEFANO',
+            'placeholder'=>'04/20/2000',
             'class'=>'form-control ',
             'id'=>'time_to',
             'readonly'=>'true'
