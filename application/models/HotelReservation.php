@@ -23,6 +23,11 @@ class Application_Model_HotelReservation extends Zend_Db_Table_Abstract
         $row->user_id=$uid;
         $row->save();
     }
+    function listallhotelreserve($uid)
+    {
+
+    return $this->fetchAll("user_id=$uid",null,null)->toArray();
+    }
 
 }
 

@@ -50,7 +50,11 @@ class Application_Model_User extends Zend_Db_Table_Abstract
        $user_data['email']=$userdata['email'];
        $user_data['name']=$userdata['name'];
        $user_data['password']=$userdata['password'];
-       $user_data['imag_path']=$userdata['imag_path'];
+       if($userdata['imag_path']!="")
+       {
+         $user_data['imag_path']=$userdata['imag_path'];
+       }
+       
        $this->update($user_data,"id=$id");
     }
 
@@ -75,6 +79,11 @@ class Application_Model_User extends Zend_Db_Table_Abstract
         $row->name =  $post['name'];
         $row->email =  $post['email'];
         $row->password = $post['pswd'];
+        if ($post['imag_path'] != "")
+        {
+            $row->imag_path=$post['imag_path'];
+        }
+
         $row->save();
 
     }
