@@ -71,6 +71,8 @@
           <actionMethod actionName="deletepost"/>
           <actionMethod actionName="siginup"/>
           <actionMethod actionName="allhotelreservation"/>
+          <actionMethod actionName="fbauth"/>
+          <actionMethod actionName="fbloginform"/>
         </controllerFile>
       </controllersDirectory>
       <formsDirectory>
@@ -267,11 +269,14 @@
             <viewScriptFile forActionName="articelDeleteComment"/>
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="User">
-
             <viewScriptFile forActionName="siginup"/>
-
             <viewScriptFile forActionName="allhotelreservation"/>
-
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="User">
+            <viewScriptFile forActionName="fbauth"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="User">
+            <viewScriptFile forActionName="fbloginform"/>
           </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewHelpersDirectory/>

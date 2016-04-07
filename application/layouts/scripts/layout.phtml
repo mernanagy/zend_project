@@ -62,7 +62,7 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-
+                <?php $country_obj = new Application_Model_Country(); $countries=$country_obj->listCountries();?>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Countries <span class="caret"></span></a>
                     <ul class="dropdown-menu">
@@ -70,8 +70,14 @@
                         <?php
                           
                             
-                             echo $this->layout()->Country ;
-                                 
+
+                            foreach ($countries as $key=>$value)
+                            {
+                                ?>
+                        <li><a href="/country/list-cities/id/<?php echo $value['id'];?>"><?php echo $value['name']; ?></a></li>
+                        <?php
+
+                            }
 
                           
 
@@ -95,7 +101,7 @@
                 $auth = Zend_Auth::getInstance();
                 $storage = $auth->getStorage();
                 $sessionRead = $storage->read();
-
+                $fbsession = new Zend_Session_Namespace('facebook');
                 if (!empty($sessionRead)){
 
                     $name = $sessionRead->name;
@@ -129,10 +135,35 @@
 
 
                 }
+                elseif(isset($fbsession->first_name) && !empty (isset($fbsession->first_name)))
+                {
+                    $name = $fbsession->first_name;
+
+                    ?>
+
+                    <li class="navbar-brand">Welcome <?php echo $name;?></li>
+                    <li><a></a></li>
+                    <li> <a href="/user/signout" style="color: white;"  class="btn btn-danger" >Sign Out</a> </li>
+                    <?php
+                }
                 else{
                 ?>
                     <!-- changeable -->
                 <li> <button id="sign-in"  class="btn btn-default" >Sign In</button> </li>
+                    <li><a></a></li>
+                    <?php
+//                    $fb = new Facebook\Facebook([
+//                        'app_id' => '1677264832540895', // Replace {app-id} with your app id
+//                        'app_secret' => 'e6ba08afab0e709d64aa6b826e1e6be4',
+//                        'default_graph_version' => 'v2.5',
+//                    ]);
+                   // $helper = $fb->getRedirectLoginHelper();
+                   // $login_url=$helper->getLoginUrl( $this->serverUrl().'/user/fbauth');
+
+                    //  echo  $login_url;
+
+                    ?>
+                    <li><a href="/user/fbloginform"  ><button class="btn btn-primary">Login With Facebook</button></a></li>
                     <li><a></a></li>
                 <li><a href="/user/siginup"  ><button class="btn btn-default">Sign Up</button></a></li>
                 <?php } ?>
@@ -187,14 +218,15 @@
     position:absolute;
     bottom:0;
     left:0;"-->
+
         <div class="container">
             <div class="row">
                 <div class="col-md-8 col-sm-6">
                     <span id="copyright">
                     	Copyright &copy; 2016 <a href="#">Zend Project</a>
-                    	
-                        
-                      
+
+
+
                     </span>
 
             </div> <!-- /.col-md-6 -->

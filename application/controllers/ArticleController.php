@@ -110,7 +110,7 @@ class ArticleController extends Zend_Controller_Action
 
         if (isset($_POST))
         {
-            
+
             $comment_model_obj->delete_comment($_POST['id']);
         }
     }

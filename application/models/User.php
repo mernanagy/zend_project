@@ -79,6 +79,11 @@ class Application_Model_User extends Zend_Db_Table_Abstract
         $row->name =  $post['name'];
         $row->email =  $post['email'];
         $row->password = $post['pswd'];
+        if ($post['imag_path'] != "")
+        {
+            $row->imag_path=$post['imag_path'];
+        }
+
         $row->save();
 
     }
